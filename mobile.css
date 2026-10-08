@@ -1,0 +1,1036 @@
+/* ==========================================================================
+   SMARTBUILD — MOBILE FIRST & PHONE ACCESSIBILITY (<= 800px)
+   Targeted for 390x844 (Primary), 360x800, 430x932, and Tablets
+   Parent-Friendly: Large Touch Targets, High Readability, No Cramping
+   ========================================================================== */
+
+@media (max-width: 800px) {
+  :root {
+    --mobile-nav-height: 72px;
+    --mobile-nav-offset: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom, 12px) + 20px);
+  }
+
+  /* Prevent whole page from horizontal scrolling */
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  body {
+    padding-bottom: var(--mobile-nav-offset);
+  }
+
+  /* ------------------------------------------------------------------------
+     1. LOGIN PAGE (MOBILE)
+     ------------------------------------------------------------------------ */
+  .login-page {
+    grid-template-columns: 1fr;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .brand-panel {
+    display: none; /* Hide dense marketing panel on mobile to focus on login */
+  }
+
+  .login-panel {
+    padding: 24px 18px;
+    width: 100%;
+    margin: auto 0;
+  }
+
+  .login-card {
+    padding: 30px 22px;
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .mobile-brand {
+    display: flex;
+  }
+
+  .heading h2 {
+    font-size: 26px;
+  }
+
+  .heading p:last-child {
+    font-size: 15px;
+    margin-bottom: 22px;
+  }
+
+  .input-wrap input {
+    min-height: 52px;
+    font-size: 16px;
+  }
+
+  .btn-primary.btn-lg {
+    min-height: 56px;
+    font-size: 16px;
+  }
+
+  /* ------------------------------------------------------------------------
+     2. APP SHELL & TOPBAR (MOBILE)
+     ------------------------------------------------------------------------ */
+  .app-page {
+    display: block;
+    min-height: 100vh;
+  }
+
+  .sidebar {
+    display: none; /* Replaced by bottom navigation on mobile */
+  }
+
+  .content {
+    min-height: 100vh;
+    display: block;
+  }
+
+  .topbar {
+    height: 70px;
+    padding: 0 16px;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.05);
+  }
+
+  .topbar-left .breadcrumb {
+    display: none; /* Use mobile title on phone screen */
+  }
+
+  .mobile-title {
+    display: flex;
+    font-size: 15px;
+    font-weight: 800;
+  }
+
+  .top-actions {
+    gap: 8px;
+  }
+
+  .mode-pill-top {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .profile-chip {
+    display: none; /* Save space on mobile header */
+  }
+
+  .icon-btn {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* ------------------------------------------------------------------------
+     3. PAGE CONTAINER & HEADINGS (MOBILE)
+     ------------------------------------------------------------------------ */
+  .page-container {
+    padding: 18px 14px var(--mobile-nav-offset);
+  }
+
+  .page-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 20px;
+  }
+
+  .page-heading h1 {
+    font-size: 26px;
+    line-height: 1.25;
+  }
+
+  .heading-sub {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .panel {
+    padding: 20px 16px;
+    border-radius: var(--radius-lg);
+    margin-bottom: 18px;
+  }
+
+  .panel-head {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .panel-head h3, .panel h3 {
+    font-size: 18px;
+  }
+
+  .panel-head p {
+    font-size: 13px;
+  }
+
+  /* ------------------------------------------------------------------------
+     4. DASHBOARD (BERANDA) MOBILE
+     ------------------------------------------------------------------------ */
+  .answers-card {
+    grid-template-columns: 1fr;
+    padding: 16px;
+    gap: 12px;
+  }
+
+  .answer-item {
+    gap: 12px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid var(--border-light);
+  }
+
+  .answer-item:last-child {
+    border-bottom: none;
+    padding-bottom: 0;
+  }
+
+  .answer-icon {
+    width: 40px;
+    height: 40px;
+    font-size: 22px;
+  }
+
+  .answer-text strong {
+    font-size: 15px;
+  }
+
+  /* 2x2 Stats Grid for clean phone scanning */
+  .stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 18px;
+  }
+
+  .stat-card {
+    padding: 16px 14px;
+    gap: 12px;
+  }
+
+  .stat-icon-wrap {
+    width: 44px;
+    height: 44px;
+  }
+
+  .stat-icon {
+    font-size: 22px;
+  }
+
+  .stat-content strong {
+    font-size: 22px;
+  }
+
+  .stat-content small {
+    font-size: 10px;
+  }
+
+  .stat-content span {
+    font-size: 11px;
+  }
+
+  /* Quick Actions Single Column or 2-col */
+  .quick-action-buttons {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .quick-action-btn {
+    min-height: 68px;
+    padding: 14px 16px;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .system-item {
+    padding: 12px 14px;
+  }
+
+  .system-item-left strong {
+    font-size: 14px;
+  }
+
+  .system-item-left small {
+    font-size: 12px;
+  }
+
+  /* ------------------------------------------------------------------------
+     5. ROOM MONITORING & DIGITAL FLOOR PLAN MOBILE
+     ------------------------------------------------------------------------ */
+  .room-summary {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .summary-box {
+    padding: 14px;
+  }
+
+  .summary-box strong {
+    font-size: 22px;
+  }
+
+  .summary-box small {
+    font-size: 10px;
+  }
+
+  .house-layout-panel {
+    padding: 18px 14px;
+  }
+
+  .mobile-scroll-hint {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  /* Controlled horizontal scroll ONLY inside the floor-plan container */
+  .floor-plan-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    padding-bottom: 12px;
+  }
+
+  .house-plan {
+    width: 680px;
+    min-width: 680px;
+    height: 340px;
+    grid-template-columns: 1.4fr 1fr 1fr 1fr;
+    grid-template-rows: 1.1fr 1.1fr 1fr;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .plan-room {
+    padding: 12px;
+  }
+
+  .plan-room-name {
+    font-size: 13px;
+  }
+
+  .plan-room-icon {
+    font-size: 18px;
+  }
+
+  .plan-badge {
+    font-size: 10px;
+    padding: 3px 6px;
+  }
+
+  .room-monitor-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .room-detail-panel {
+    padding: 20px 16px;
+  }
+
+  .room-detail-metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .metric-box {
+    padding: 12px 14px;
+  }
+
+  .metric-box strong {
+    font-size: 16px;
+  }
+
+  .slider-control-wrap {
+    min-width: 140px;
+  }
+
+  .temp-stepper .step-btn {
+    width: 44px;
+    height: 44px;
+    font-size: 22px;
+  }
+
+  /* ------------------------------------------------------------------------
+     6. LIGHTING (LAMPU) MOBILE
+     ------------------------------------------------------------------------ */
+  .lighting-overview {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .lighting-toolbar-panel {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 18px 16px;
+    gap: 16px;
+  }
+
+  .toolbar-action-buttons {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+
+  .toolbar-action-buttons .btn-action-primary,
+  .toolbar-action-buttons .btn-action-secondary {
+    width: 100%;
+    min-height: 52px;
+  }
+
+  .toolbar-toggle-item {
+    justify-content: space-between;
+    width: 100%;
+    padding-top: 6px;
+  }
+
+  .light-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .light-room-card {
+    padding: 18px 16px;
+  }
+
+  /* ------------------------------------------------------------------------
+     7. HVAC (SUHU & AC) MOBILE
+     ------------------------------------------------------------------------ */
+  .hvac-summary {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .climate-summary-card {
+    padding: 14px;
+  }
+
+  .climate-summary-card strong {
+    font-size: 20px;
+  }
+
+  .hvac-main-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .climate-controller-card {
+    padding: 20px 16px;
+  }
+
+  .zone-selector-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .zone-btn {
+    min-height: 54px;
+    padding: 10px 12px;
+  }
+
+  .zone-btn strong {
+    font-size: 13px;
+  }
+
+  .thermostat-display-box {
+    padding: 20px 14px;
+  }
+
+  .current-temp-big {
+    font-size: 52px;
+  }
+
+  .setpoint-controller .btn-stepper {
+    width: 56px;
+    height: 56px;
+    font-size: 26px;
+  }
+
+  .setpoint-number {
+    font-size: 34px;
+  }
+
+  .mode-buttons-row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 8px;
+  }
+
+  .mode-buttons-row .btn-mode:nth-child(4),
+  .mode-buttons-row .btn-mode:nth-child(5) {
+    grid-column: span 1;
+  }
+
+  .btn-mode {
+    padding: 8px 10px;
+    font-size: 13px;
+    justify-content: center;
+    min-height: 48px;
+  }
+
+  .comfort-environmental-row {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  /* ------------------------------------------------------------------------
+     8. ENERGY (LISTRIK) MOBILE
+     ------------------------------------------------------------------------ */
+  .energy-kpis {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .energy-kpi-card {
+    padding: 14px;
+  }
+
+  .energy-kpi-card strong {
+    font-size: 20px;
+  }
+
+  .energy-main-grid, .energy-bottom-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .energy-chart-container {
+    height: 200px;
+  }
+
+  .saving-source-item {
+    gap: 10px;
+    padding: 12px 0;
+  }
+
+  .saving-num-tag {
+    font-size: 14px;
+    padding: 4px 8px;
+  }
+
+  /* ------------------------------------------------------------------------
+     9. SECURITY (KEAMANAN) MOBILE
+     ------------------------------------------------------------------------ */
+  .security-kpis {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .security-kpi-card {
+    padding: 14px;
+  }
+
+  .security-kpi-card strong {
+    font-size: 20px;
+  }
+
+  .security-top-grid, .security-main-grid {
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .sec-modes-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .sec-mode-btn {
+    min-height: 80px;
+  }
+
+  .alarm-control-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 14px;
+  }
+
+  .alarm-control-card button {
+    width: 100%;
+  }
+
+  /* ------------------------------------------------------------------------
+     10. NOTIFICATIONS MOBILE
+     ------------------------------------------------------------------------ */
+  .notification-summary {
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  .notif-stat-card {
+    padding: 14px;
+  }
+
+  .notif-stat-card strong {
+    font-size: 22px;
+  }
+
+  .notification-row {
+    padding: 14px;
+    gap: 12px;
+  }
+
+  .notif-icon-circle {
+    width: 38px;
+    height: 38px;
+    font-size: 18px;
+  }
+
+  /* ------------------------------------------------------------------------
+     11. SETTINGS MOBILE
+     ------------------------------------------------------------------------ */
+  .settings-panel {
+    padding: 20px 16px;
+  }
+
+  .settings-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 14px;
+  }
+
+  .settings-item.field-item {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .settings-item .toggle-switch {
+    align-self: flex-start;
+  }
+
+  /* ------------------------------------------------------------------------
+     12. MOBILE BOTTOM NAVIGATION (5 ITEMS)
+     Beranda • Ruangan • Lampu • Suhu • Lainnya
+     ------------------------------------------------------------------------ */
+  .mobile-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: var(--mobile-nav-height);
+    background-color: rgba(255, 255, 255, 0.98);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border-top: 1.5px solid var(--border-card);
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    align-items: center;
+    padding: 4px 6px calc(4px + env(safe-area-inset-bottom, 8px));
+    z-index: 9998;
+    box-shadow: 0 -4px 18px rgba(0, 0, 0, 0.06);
+  }
+
+  .mobile-nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    min-height: 52px;
+    padding: 6px 2px;
+    border-radius: var(--radius-md);
+    color: var(--text-secondary);
+    font-weight: 600;
+    transition: color 0.15s, background-color 0.15s;
+    user-select: none;
+  }
+
+  .mobile-nav-item .m-icon {
+    font-size: 22px;
+    line-height: 1;
+    display: block;
+  }
+
+  .mobile-nav-item .m-label {
+    font-size: 11px;
+    line-height: 1.1;
+    letter-spacing: -0.2px;
+    font-weight: 700;
+  }
+
+  .mobile-nav-item:hover {
+    color: var(--primary);
+  }
+
+  .mobile-nav-item.active {
+    color: var(--primary);
+    background-color: var(--primary-soft);
+  }
+
+  .mobile-nav-item.active .m-label {
+    font-weight: 800;
+  }
+
+  /* ------------------------------------------------------------------------
+     13. MOBILE "LAINNYA" (MORE) BOTTOM SHEET
+     ------------------------------------------------------------------------ */
+  .mobile-more-menu {
+    position: fixed;
+    left: 12px;
+    right: 12px;
+    bottom: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom, 8px) + 10px);
+    background-color: #FFFFFF;
+    border: 2px solid var(--border-card);
+    border-radius: var(--radius-xl);
+    padding: 16px;
+    box-shadow: var(--shadow-dropdown);
+    z-index: 9999;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    animation: sheetSlideUp 0.2s ease-out;
+  }
+
+  @keyframes sheetSlideUp {
+    from { transform: translateY(16px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+  }
+
+  .mobile-more-head {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--border-light);
+    margin-bottom: 12px;
+  }
+
+  .mobile-more-head strong {
+    display: block;
+    font-size: 16px;
+    color: var(--text-main);
+  }
+
+  .mobile-more-head small {
+    display: block;
+    font-size: 12px;
+    color: var(--text-muted);
+  }
+
+  .btn-close-sheet {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background-color: var(--bg-subtle);
+    color: var(--text-secondary);
+    font-size: 16px;
+    font-weight: 800;
+    display: grid;
+    place-items: center;
+  }
+
+  .mobile-more-grid {
+    display: grid;
+    gap: 8px;
+  }
+
+  .m-more-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px 14px;
+    border-radius: var(--radius-md);
+    background-color: var(--bg-subtle);
+    border: 1px solid var(--border-light);
+    min-height: 56px;
+    text-align: left;
+    transition: background-color 0.15s;
+  }
+
+  .m-more-item:hover, .m-more-item:active {
+    background-color: var(--primary-soft);
+    border-color: var(--primary-soft-border);
+  }
+
+  .m-more-icon {
+    font-size: 24px;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background-color: #FFFFFF;
+    display: grid;
+    place-items: center;
+    flex-shrink: 0;
+  }
+
+  .m-more-text {
+    flex: 1;
+  }
+
+  .m-more-text strong {
+    display: block;
+    font-size: 15px;
+    color: var(--text-main);
+  }
+
+  .m-more-text small {
+    display: block;
+    font-size: 12px;
+    color: var(--text-secondary);
+  }
+
+  .m-more-arrow {
+    font-size: 18px;
+    color: var(--text-muted);
+  }
+
+  .m-more-item.logout-item {
+    background-color: var(--danger-soft);
+    border-color: var(--danger-border);
+    margin-top: 6px;
+  }
+
+  .m-more-item.logout-item strong {
+    color: var(--danger-text);
+  }
+
+  /* Toast Container on Phone */
+  .toast-container {
+    left: 14px;
+    right: 14px;
+    bottom: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom, 8px) + 12px);
+    max-width: none;
+    width: auto;
+  }
+}
+
+/* Specific narrow devices (< 380px) */
+@media (max-width: 380px) {
+  .page-container {
+    padding: 14px 10px var(--mobile-nav-offset);
+  }
+
+  .stats-grid, .room-summary, .hvac-summary, .energy-kpis, .security-kpis, .notification-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .mobile-nav-item .m-icon {
+    font-size: 20px;
+  }
+
+  .mobile-nav-item .m-label {
+    font-size: 10px;
+  }
+}
+
+
+/* ========================================================================
+   SMARTBUILD MOBILE POLISH — WARM PREMIUM SMART-HOME SYNTHESIS
+   Priority: smartphone UX / elderly-friendly / no popup stacking
+   ======================================================================== */
+@media (max-width: 800px) {
+  :root {
+    --bg-app: #F5F1E9;
+    --bg-surface: #FFFDF8;
+    --bg-subtle: #F1ECE3;
+    --bg-hover: #E8E1D6;
+    --primary: #2E6858;
+    --primary-hover: #245646;
+    --primary-active: #1E473A;
+    --primary-soft: #E7F0EB;
+    --primary-soft-border: #C7DED4;
+    --secondary: #445D67;
+    --text-main: #23312D;
+    --text-body: #394A45;
+    --text-secondary: #60716B;
+    --text-muted: #7D8B85;
+    --border-light: #E4DDD3;
+    --border-card: #D9D0C4;
+    --border-focus: #2E6858;
+    --success: #397A57;
+    --success-soft: #E7F3EA;
+    --success-border: #C8E2D0;
+    --success-text: #245A3C;
+    --warning: #B46F2C;
+    --warning-soft: #FBF0E1;
+    --warning-border: #EBCFA7;
+    --warning-text: #80501E;
+    --danger: #B74A44;
+    --danger-soft: #FBECE9;
+    --danger-border: #EAC1BC;
+    --danger-text: #87362F;
+    --mobile-nav-height: 76px;
+    --mobile-nav-offset: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom, 10px) + 18px);
+  }
+  body { background: var(--bg-app); color: var(--text-body); }
+  .app-page, .content { background: var(--bg-app); }
+  .topbar { height: 72px; padding: 0 14px; background: rgba(255,253,248,.98); border-bottom: 1px solid var(--border-light); box-shadow: 0 3px 14px rgba(66,55,42,.07); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .mobile-title { min-width: 0; gap: 9px; color: var(--text-main); }
+  .mobile-title > span:last-child { max-width: 170px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .brand-mark-mini { background: var(--primary); border-radius: 9px; width: 32px; height: 32px; flex: 0 0 32px; }
+  .mode-pill-top { border: 1px solid var(--border-card); background: #F4F0E8; color: var(--text-main); font-weight: 800; padding: 7px 10px; box-shadow: none; }
+  .top-actions { gap: 6px; }
+  .icon-btn { width: 46px; height: 46px; border-radius: 14px; background: #F5F0E8; border: 1px solid var(--border-card); }
+  .page-container { padding: 16px 14px var(--mobile-nav-offset); }
+  .page-heading { gap: 8px; margin-bottom: 16px; }
+  .page-heading h1 { font-size: 26px; line-height: 1.18; letter-spacing: -.6px; color: var(--text-main); }
+  .heading-sub { font-size: 14px; color: var(--text-secondary); line-height: 1.48; }
+  .eyebrow { color: var(--primary); }
+  .panel { background: var(--bg-surface); border-color: var(--border-card); box-shadow: 0 4px 18px rgba(76,61,45,.05); padding: 18px 16px; border-radius: 20px; }
+  .panel-head h3, .panel h3 { color: var(--text-main); letter-spacing: -.2px; }
+  .panel-head p { color: var(--text-secondary); }
+
+  .answers-card { grid-template-columns: 1fr 1fr; gap: 10px; padding: 0; background: transparent; border: 0; box-shadow: none; }
+  .answer-item { background: var(--bg-surface); border: 1px solid var(--border-card); border-radius: 18px; padding: 14px; min-height: 84px; box-shadow: 0 3px 12px rgba(77,62,44,.045); }
+  .answer-item:first-child { grid-column: 1 / -1; min-height: 100px; background: #294B40; color: #fff; border-color: #294B40; box-shadow: 0 8px 20px rgba(40,70,59,.16); }
+  .answer-item:first-child .answer-text small, .answer-item:first-child .answer-text strong, .answer-item:first-child .answer-text span { color: #fff; }
+  .answer-icon { width: 42px; height: 42px; border-radius: 14px; background: #F4EFE6; }
+  .answer-item:first-child .answer-icon { background: rgba(255,255,255,.14); }
+  .answer-text strong { font-size: 15px; line-height: 1.25; }
+  .answer-text span { font-size: 12px; }
+  .answer-text small { font-size: 10px; letter-spacing: .55px; }
+
+  .stats-grid { gap: 10px; margin-bottom: 14px; }
+  .stat-card { padding: 14px; min-height: 106px; background: #FFFCF7; border-color: var(--border-card); border-radius: 18px; box-shadow: none; }
+  .stat-icon-wrap { width: 42px; height: 42px; border-radius: 13px; background: #EEF3EE; }
+  .stat-content strong { font-size: 21px; color: var(--text-main); }
+  .stat-content small { font-size: 9px; }
+  .stat-content span { font-size: 11px; }
+  .quick-action-buttons { gap: 9px; }
+  .quick-action-btn { min-height: 64px; padding: 12px 14px; border-radius: 16px; background: #FFFCF7; border-color: var(--border-card); }
+  .action-icon { width: 42px; height: 42px; border-radius: 13px; background: #F0F4EF; }
+  .action-info strong { font-size: 14px; }
+  .action-info span { font-size: 11px; }
+  .action-badge { min-width: 54px; font-size: 10px; }
+
+  .skylight-dashboard-panel { padding: 16px; }
+  .skylight-dashboard-head { display: flex; gap: 10px; align-items: flex-start; justify-content: space-between; margin-bottom: 13px; }
+  .skylight-dashboard-head h3 { font-size: 18px; margin-top: 2px; }
+  .dashboard-skylight-sub { font-size: 12px; color: var(--text-secondary); margin-top: 4px; line-height: 1.45; }
+  .skylight-dashboard-head .btn-subtle { flex: 0 0 auto; min-height: 44px; padding: 9px 11px; }
+  .skylight-mini-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .skylight-mini-card { display: flex; gap: 9px; align-items: center; padding: 12px; background: #F4F1EA; border: 1px solid var(--border-light); border-radius: 16px; }
+  .skylight-mini-card.is-open { background: #EEF5EF; border-color: var(--success-border); }
+  .skylight-mini-visual { width: 42px; height: 42px; display: grid; place-items: center; border-radius: 13px; background: #EAE4D8; font-size: 19px; flex: 0 0 42px; }
+  .skylight-mini-copy { min-width: 0; }
+  .skylight-mini-copy strong { display: block; font-size: 12px; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .skylight-mini-copy span { display: block; margin-top: 3px; font-size: 10px; font-weight: 800; color: var(--primary); }
+  .skylight-mini-copy small { display: block; margin-top: 3px; font-size: 9px; color: var(--text-muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+  .room-summary { gap: 9px; margin-bottom: 14px; }
+  .summary-box { padding: 13px; min-height: 92px; border-radius: 16px; }
+  .summary-box strong { font-size: 21px; }
+  .summary-box small { font-size: 9px; }
+  .summary-box span { font-size: 11px; }
+  .house-layout-panel { padding: 15px 12px; }
+  .mobile-scroll-hint { background: #EEF3EE; border: 1px solid #D5E3D8; color: var(--primary); font-size: 12px; border-radius: 13px; }
+  .floor-plan-scroll { margin: 0 -2px; padding-bottom: 8px; }
+  .house-plan { width: 700px; min-width: 700px; height: 350px; background: #F3F0E9; border: 2px solid #CFC6B9; border-radius: 20px; padding: 13px; gap: 9px; box-shadow: none; }
+  .plan-room { padding: 11px; border-radius: 16px; border-width: 1.5px; box-shadow: none; }
+  .plan-room.selected { box-shadow: 0 0 0 3px rgba(46,104,88,.18); }
+  .plan-room-name { font-size: 12px; }
+  .plan-room-icon { font-size: 18px; }
+  .plan-badge { font-size: 9px; padding: 3px 5px; border-radius: 7px; }
+
+  .plan-skylight { position: absolute; z-index: 8; width: 106px; min-height: 58px; padding: 8px 9px; border-radius: 15px; background: rgba(248,252,248,.94); border: 1.5px solid #AFCBBE; box-shadow: 0 5px 16px rgba(43,75,61,.12); color: var(--text-main); text-align: left; display: grid; grid-template-columns: 22px 1fr; column-gap: 5px; row-gap: 1px; top: 38%; }
+  #planSkylight-skylight1 { left: 30%; }
+  #planSkylight-skylight2 { left: 65%; top: 54%; }
+  .plan-skylight.is-open { border-color: #83A88F; background: #EFF7F0; }
+  .plan-skylight-icon { grid-row: span 2; font-size: 18px; align-self: center; }
+  .plan-skylight > span:nth-child(2) { font-size: 11px; font-weight: 800; }
+  .plan-skylight small { font-size: 9px; color: var(--primary); font-weight: 800; }
+  .plan-skylight i { position: absolute; right: 6px; bottom: 5px; font-style: normal; font-size: 12px; }
+
+  .skylight-control-panel { scroll-margin-top: 82px; }
+  .skylight-panel-head { margin-bottom: 13px; }
+  .skylight-cards-grid { display: grid; grid-template-columns: 1fr; gap: 11px; }
+  .skylight-card { padding: 14px; border: 1px solid var(--border-card); border-radius: 18px; background: #FFFCF7; transition: border-color .16s ease, box-shadow .16s ease; }
+  .skylight-card.is-open { background: #FBFCF8; border-color: var(--success-border); }
+  .skylight-card.is-focused { border-color: var(--primary); box-shadow: 0 0 0 3px rgba(46,104,88,.12); }
+  .skylight-card-top { display: flex; justify-content: space-between; gap: 10px; align-items: flex-start; }
+  .skylight-title-wrap { display: flex; gap: 10px; min-width: 0; }
+  .skylight-visual { width: 46px; height: 46px; border-radius: 14px; background: #EDF2ED; display: grid; place-items: center; position: relative; flex: 0 0 46px; font-size: 20px; }
+  .skylight-visual span:last-child { position: absolute; right: -2px; bottom: -2px; font-size: 13px; }
+  .skylight-title-wrap .eyebrow { font-size: 9px; }
+  .skylight-title-wrap h4 { font-size: 16px; color: var(--text-main); margin-top: 1px; }
+  .skylight-title-wrap p { font-size: 11px; color: var(--text-secondary); line-height: 1.4; margin-top: 2px; }
+  .skylight-status-chip { flex: 0 0 auto; font-size: 10px; font-weight: 900; padding: 6px 8px; border-radius: 999px; }
+  .skylight-status-chip.closed { color: var(--text-secondary); background: #F1EEE7; border: 1px solid var(--border-light); }
+  .skylight-status-chip.open { color: var(--success-text); background: var(--success-soft); border: 1px solid var(--success-border); }
+  .skylight-detail-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 7px; margin: 12px 0 9px; }
+  .skylight-detail-item { background: #F5F1E9; border: 1px solid var(--border-light); border-radius: 12px; padding: 9px; min-width: 0; }
+  .skylight-detail-item small { display: block; font-size: 8px; color: var(--text-muted); font-weight: 800; letter-spacing: .5px; }
+  .skylight-detail-item strong { display: block; margin-top: 3px; font-size: 12px; color: var(--text-main); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .skylight-progress { height: 7px; background: #E9E3DA; border-radius: 999px; overflow: hidden; }
+  .skylight-progress span { display: block; height: 100%; background: var(--primary); border-radius: inherit; transition: width .2s ease; }
+  .skylight-mode-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 11px; }
+  .skylight-mode-btn { min-height: 48px; border-radius: 13px; border: 1px solid var(--border-card); background: #F6F2EA; color: var(--text-secondary); font-size: 12px; font-weight: 900; }
+  .skylight-mode-btn.active { background: var(--primary-soft); border-color: var(--primary); color: var(--primary-active); }
+  .skylight-open-buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 8px; }
+  .skylight-control-btn { min-height: 52px; border-radius: 14px; border: 1px solid var(--border-card); font-size: 14px; font-weight: 900; }
+  .skylight-control-btn.secondary { background: #F3EFE8; color: var(--text-main); }
+  .skylight-control-btn.primary { background: var(--primary); color: #fff; border-color: var(--primary); }
+  .skylight-note { margin-top: 9px; font-size: 10.5px; line-height: 1.42; color: var(--text-muted); }
+
+  .room-detail-panel { padding: 16px; }
+  .room-title-wrap { gap: 10px; }
+  .room-big-icon { width: 44px; height: 44px; font-size: 22px; }
+  .room-detail-metrics { gap: 8px; }
+  .metric-box { padding: 10px; border-radius: 13px; }
+  .metric-box strong { font-size: 15px; }
+  .room-control-row { padding: 12px 0; }
+  .control-label-group strong { font-size: 13px; }
+  .control-label-group small { font-size: 10px; }
+  .toggle-switch { min-width: 52px; }
+  .slider-control-wrap { min-width: 150px; }
+  .temp-stepper .step-btn { width: 50px; height: 50px; }
+
+  .lighting-overview, .hvac-summary, .energy-kpis, .security-kpis, .notification-summary { gap: 9px; }
+  .light-room-card, .climate-summary-card, .energy-kpi-card, .security-kpi-card, .notif-stat-card { border-radius: 18px; box-shadow: none; }
+  .light-room-card { padding: 16px 14px; }
+  .light-card-body h3 { font-size: 16px; }
+  .light-card-body p { font-size: 11px; }
+  .slider-label-row { font-size: 12px; }
+  .slider-label-row strong { font-size: 15px; }
+  .zone-selector-grid { gap: 7px; }
+  .zone-btn { min-height: 56px; border-radius: 13px; }
+  .zone-btn strong { font-size: 12px; }
+  .zone-btn small { font-size: 10px; }
+  .thermostat-display-box { padding: 18px 12px; border-radius: 18px; }
+  .current-temp-big { font-size: 50px; }
+  .setpoint-number { font-size: 32px; }
+  .btn-mode { min-height: 50px; }
+  .energy-chart-container { height: 190px; }
+  .sec-mode-btn { min-height: 70px; border-radius: 16px; }
+  .notification-row { padding: 13px; border-radius: 15px; }
+
+  .mobile-nav { height: var(--mobile-nav-height); background: rgba(255,253,248,.98); border-top: 1px solid var(--border-card); box-shadow: 0 -6px 20px rgba(66,55,42,.08); backdrop-filter: none; -webkit-backdrop-filter: none; padding: 5px 5px calc(5px + env(safe-area-inset-bottom,7px)); }
+  .mobile-nav-item { min-height: 54px; border-radius: 15px; }
+  .mobile-nav-item .m-icon { font-size: 20px; }
+  .mobile-nav-item .m-label { font-size: 10px; }
+  .mobile-nav-item.active { background: #E8F1EB; color: var(--primary-active); }
+  .mobile-more-menu { left: 10px; right: 10px; bottom: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom,8px) + 9px); background: #FFFCF7; border: 1px solid var(--border-card); box-shadow: 0 14px 38px rgba(55,46,38,.15); backdrop-filter: none; -webkit-backdrop-filter: none; }
+  .m-more-item { min-height: 58px; border-radius: 15px; background: #F6F2EA; }
+
+  .toast-container { left: 12px; right: 12px; bottom: calc(var(--mobile-nav-height) + env(safe-area-inset-bottom,8px) + 10px); z-index: 9997; }
+  .toast { padding: 12px 13px; border-radius: 14px; box-shadow: 0 10px 28px rgba(29,45,53,.18); }
+  .toast-body strong { font-size: 12px; }
+  .toast-body p { font-size: 11px; }
+  .toast-close { min-width: 36px; min-height: 36px; }
+  .toast.is-closing { animation: toastFadeOut .16s ease-in forwards; }
+}
+
+@media (max-width: 380px) {
+  .stats-grid, .room-summary, .hvac-summary, .energy-kpis, .security-kpis, .notification-summary { grid-template-columns: 1fr 1fr; }
+  .skylight-mini-grid { grid-template-columns: 1fr; }
+}
+
+
+/* Skylight / energy integration feedback */
+.energy-skylight-note {
+  margin-top: 12px;
+  padding: 11px 13px;
+  border-radius: 14px;
+  background: rgba(46, 104, 88, 0.08);
+  border: 1px solid rgba(46, 104, 88, 0.14);
+  color: var(--text-main, #18352e);
+  font-size: 0.88rem;
+  line-height: 1.45;
+}
+@media (max-width: 380px) {
+  .energy-skylight-note {
+    font-size: 0.82rem;
+  }
+}

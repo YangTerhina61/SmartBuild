@@ -1,0 +1,2074 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta name="theme-color" content="#2E6858">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <link rel="manifest" href="manifest.json">
+  <title>SMARTBUILD — House 01 • Smart Home Management System</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="mobile.css" media="(max-width: 800px)">
+</head>
+<body>
+
+  <!-- =========================================================
+       PAGE 1: LOGIN
+       ========================================================= -->
+  <section id="loginPage" class="login-page">
+    <div class="brand-panel">
+      <div class="brand-badge">
+        <div class="brand-mark" aria-hidden="true">SB</div>
+        <span class="brand-tag">SINGLE-STOREY HOUSE</span>
+      </div>
+      <h1>SMARTBUILD</h1>
+      <p class="brand-tagline">Smart Home Management System • House 01</p>
+      <p class="brand-desc">Sistem kontrol dan pemantauan rumah terpadu yang dirancang tenang, nyaman, mudah dibaca, dan aman digunakan untuk seluruh keluarga.</p>
+      
+      <div class="feature-preview" role="region" aria-label="Status Pratinjau Rumah">
+        <div class="preview-card">
+          <span class="preview-icon" aria-hidden="true">🏠</span>
+          <div>
+            <small>PROFIL RUMAH</small>
+            <strong>House 01 • Satu Lantai</strong>
+          </div>
+        </div>
+        <div class="preview-card">
+          <span class="preview-icon" aria-hidden="true">🛡️</span>
+          <div>
+            <small>KEAMANAN SISTEM</small>
+            <strong id="loginSecurityText">✓ Semua Aman • Mode Terjaga</strong>
+          </div>
+        </div>
+        <div class="preview-card">
+          <span class="preview-icon" aria-hidden="true">⚡</span>
+          <div>
+            <small>PEMAKAIAN LISTRIK</small>
+            <strong id="loginEnergyText">12.6 kWh • Hemat Aktif</strong>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="login-panel">
+      <div class="login-card">
+        <div class="mobile-brand">
+          <div class="brand-mark small" aria-hidden="true">SB</div>
+          <div>
+            <h2>SMARTBUILD</h2>
+            <p>Smart Home Management System • House 01</p>
+          </div>
+        </div>
+
+        <div class="heading">
+          <p class="eyebrow">HOUSE 01 • AKSES MASUK</p>
+          <h2>Selamat Datang</h2>
+          <p>Silakan masuk untuk mengelola suhu, lampu, listrik, dan keamanan rumah Anda.</p>
+        </div>
+
+        <form id="loginForm" novalidate>
+          <div class="form-group">
+            <label for="username">Nama Pengguna (Username)</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true">👤</span>
+              <input id="username" type="text" value="admin" autocomplete="username" placeholder="Masukkan nama pengguna" required>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">Kata Sandi (Password)</label>
+            <div class="input-wrap">
+              <span class="input-icon" aria-hidden="true">🔒</span>
+              <input id="password" type="password" value="admin123" autocomplete="current-password" placeholder="Masukkan kata sandi" required>
+            </div>
+          </div>
+
+          <div class="form-options">
+            <label class="checkbox-label" for="showPassword">
+              <input type="checkbox" id="showPassword">
+              <span class="custom-check" aria-hidden="true"></span>
+              <span>Tampilkan Kata Sandi</span>
+            </label>
+          </div>
+
+          <button type="submit" class="btn-primary btn-block btn-lg" id="submitLoginBtn">
+            <span>MASUK KE SISTEM</span>
+            <span class="btn-arrow" aria-hidden="true">→</span>
+          </button>
+
+          <p id="loginMessage" class="message" role="alert" aria-live="polite"></p>
+        </form>
+
+        <div class="demo-note">
+          <div class="demo-title">
+            <span aria-hidden="true">ℹ️</span> Akun Demonstrasi
+          </div>
+          <p>Username: <strong>admin</strong> &nbsp;|&nbsp; Password: <strong>admin123</strong></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- =========================================================
+       MAIN APPLICATION SHELL (AFTER LOGIN)
+       ========================================================= -->
+  <section id="appPage" class="app-page hidden">
+    
+    <!-- DESKTOP SIDEBAR -->
+    <aside class="sidebar" aria-label="Navigasi Utama Desktop">
+      <div class="side-brand">
+        <div class="brand-mark small" aria-hidden="true">SB</div>
+        <div class="side-brand-text">
+          <strong>SMARTBUILD</strong>
+          <small>House 01 • 1 Storey</small>
+        </div>
+      </div>
+
+      <div class="side-house-badge">
+        <span class="house-dot online" aria-hidden="true"></span>
+        <div class="side-house-status">
+          <span class="house-mode-label" id="sideHouseMode">HOME MODE</span>
+          <span class="house-sync-label" id="sideSyncLabel">Sistem Terhubung</span>
+        </div>
+      </div>
+
+      <nav class="nav-menu" aria-label="Menu Aplikasi">
+        <button class="nav-item active" data-page="dashboard" type="button">
+          <span class="nav-icon" aria-hidden="true">⌂</span>
+          <span class="nav-text">Beranda</span>
+        </button>
+        <button class="nav-item" data-page="rooms" type="button">
+          <span class="nav-icon" aria-hidden="true">▦</span>
+          <span class="nav-text">Ruangan</span>
+        </button>
+        <button class="nav-item" data-page="lighting" type="button">
+          <span class="nav-icon" aria-hidden="true">💡</span>
+          <span class="nav-text">Lampu</span>
+        </button>
+        <button class="nav-item" data-page="hvac" type="button">
+          <span class="nav-icon" aria-hidden="true">❄</span>
+          <span class="nav-text">Suhu & AC</span>
+        </button>
+        <button class="nav-item" data-page="energy" type="button">
+          <span class="nav-icon" aria-hidden="true">⚡</span>
+          <span class="nav-text">Listrik</span>
+        </button>
+        <button class="nav-item" data-page="security" type="button">
+          <span class="nav-icon" aria-hidden="true">🛡️</span>
+          <span class="nav-text">Keamanan</span>
+        </button>
+        <button class="nav-item" data-page="notifications" type="button">
+          <span class="nav-icon" aria-hidden="true">🔔</span>
+          <span class="nav-text">Notifikasi</span>
+          <span class="nav-badge" id="navBadge" aria-label="Jumlah notifikasi belum dibaca">0</span>
+        </button>
+        <button class="nav-item" data-page="settings" type="button">
+          <span class="nav-icon" aria-hidden="true">⚙</span>
+          <span class="nav-text">Pengaturan</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-bottom">
+        <div class="user-profile-widget">
+          <div class="avatar" aria-hidden="true">AD</div>
+          <div class="user-details">
+            <strong id="sideUserName">Admin</strong>
+            <small>Kepala Keluarga</small>
+          </div>
+        </div>
+        <button id="logoutBtn" class="logout-btn" type="button">
+          <span class="logout-icon" aria-hidden="true">↪</span>
+          <span>Keluar</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- CONTENT WRAPPER -->
+    <main class="content" id="mainContent">
+      
+      <!-- TOP BAR -->
+      <header class="topbar">
+        <div class="topbar-left">
+          <div class="mobile-title">
+            <span class="brand-mark-mini" aria-hidden="true">SB</span>
+            <span>SMARTBUILD • House 01</span>
+          </div>
+          <nav class="breadcrumb" aria-label="Posisi Halaman">
+            <span>RUMAH 01</span>
+            <span class="breadcrumb-sep">/</span>
+            <strong id="pageTitle">Beranda</strong>
+          </nav>
+        </div>
+
+        <div class="top-actions">
+          <!-- House mode indicator pill -->
+          <div class="mode-pill-top" id="topModePill">
+            <span class="mode-pill-dot" aria-hidden="true"></span>
+            <span id="topModeText">HOME MODE</span>
+          </div>
+
+          <!-- Notification bell button -->
+          <button class="icon-btn" data-page="notifications" type="button" aria-label="Buka Notifikasi">
+            <span aria-hidden="true">🔔</span>
+            <span class="badge-dot hidden" id="topAlertDot" aria-hidden="true"></span>
+          </button>
+
+          <!-- Accessibility Quick Scale Toggle -->
+          <button class="icon-btn font-quick-btn" id="quickFontToggle" type="button" aria-label="Ubah Ukuran Teks">
+            <span class="font-icon" aria-hidden="true">Aa</span>
+          </button>
+
+          <!-- User profile chip -->
+          <div class="profile-chip">
+            <div class="avatar small" aria-hidden="true">AD</div>
+            <div class="profile-info">
+              <strong id="topUserName">Admin</strong>
+              <small>Pemilik Rumah</small>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <!-- PAGE CONTAINER -->
+      <div class="page-container">
+
+        <!-- =====================================================
+             PAGE 2: DASHBOARD / BERANDA
+             ===================================================== -->
+        <section id="page-dashboard" class="page-view" aria-labelledby="dashHeading">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">HOUSE 01 • RINGKASAN RUMAH</p>
+              <h1 id="dashHeading"><span id="dashGreeting">Selamat Datang</span>, Admin</h1>
+              <p class="heading-sub">Rumah satu lantai dalam kondisi aman, nyaman, dan terkelola secara otomatis.</p>
+            </div>
+            <div class="header-status-group">
+              <div class="status-pill status-safe" id="dashboardSafetyPill">
+                <span class="pill-dot" aria-hidden="true"></span>
+                <strong id="dashboardSafetyText">✓ All Secure • Rumah Aman</strong>
+              </div>
+            </div>
+          </div>
+
+          <!-- 5 KEY QUESTIONS STATUS BANNER -->
+          <div class="answers-banner" role="region" aria-label="Kondisi Pokok Rumah">
+            <div class="answers-card">
+              <div class="answer-item">
+                <span class="answer-icon" aria-hidden="true">🛡️</span>
+                <div class="answer-text">
+                  <small>KEAMANAN RUMAH</small>
+                  <strong id="ansSafe">Aman Terkunci</strong>
+                  <span id="ansSafeSub">Sensor & alarm aktif</span>
+                </div>
+              </div>
+              <div class="answer-item">
+                <span class="answer-icon" aria-hidden="true">👥</span>
+                <div class="answer-text">
+                  <small>PENGHUNI DI RUMAH</small>
+                  <strong id="ansOccupancy">3 Orang di Rumah</strong>
+                  <span id="ansOccupancySub">3 dari 6 ruangan aktif</span>
+                </div>
+              </div>
+              <div class="answer-item">
+                <span class="answer-icon" aria-hidden="true">💡</span>
+                <div class="answer-text">
+                  <small>KONDISI LAMPU</small>
+                  <strong id="ansLights">4 Lampu Menyala</strong>
+                  <span id="ansLightsSub">Ruang kosong otomatis padam</span>
+                </div>
+              </div>
+              <div class="answer-item">
+                <span class="answer-icon" aria-hidden="true">🌡️</span>
+                <div class="answer-text">
+                  <small>SUHU & KENYAMANAN</small>
+                  <strong id="ansTemp">24.5°C • Nyaman</strong>
+                  <span id="ansTempSub">Indeks kenyamanan 94%</span>
+                </div>
+              </div>
+              <div class="answer-item">
+                <span class="answer-icon" aria-hidden="true">⚡</span>
+                <div class="answer-text">
+                  <small>LISTRIK HARI INI</small>
+                  <strong id="ansPower">12.6 kWh • Normal</strong>
+                  <span id="ansPowerSub">Hemat 18.7% hari ini</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- CONCISE SUMMARY STATS GRID -->
+          <div class="stats-grid" role="region" aria-label="Metrik Utama Rumah">
+            <article class="stat-card">
+              <div class="stat-icon-wrap" aria-hidden="true">
+                <span class="stat-icon">👥</span>
+              </div>
+              <div class="stat-content">
+                <small>RUANGAN BERPENGHUNI</small>
+                <strong id="dashOccupiedCount">3 Ruangan</strong>
+                <span id="dashPeopleCount">Total 3 orang di dalam</span>
+              </div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-icon-wrap" aria-hidden="true">
+                <span class="stat-icon">💡</span>
+              </div>
+              <div class="stat-content">
+                <small>LAMPU MENYALA</small>
+                <strong id="dashLightsOnCount">4 / 6</strong>
+                <span id="dashLightsWatt">Beban lampu ~246 W</span>
+              </div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-icon-wrap" aria-hidden="true">
+                <span class="stat-icon">❄</span>
+              </div>
+              <div class="stat-content">
+                <small>HVAC / AC AKTIF</small>
+                <strong id="dashHVACActiveCount">3 Ruangan</strong>
+                <span id="dashHVACAvgTarget">Target rata-rata 24.0°C</span>
+              </div>
+            </article>
+
+            <article class="stat-card">
+              <div class="stat-icon-wrap" aria-hidden="true">
+                <span class="stat-icon">⚡</span>
+              </div>
+              <div class="stat-content">
+                <small>DAYA LISTRIK SAAT INI</small>
+                <strong id="dashCurrentPower">2.55 kW</strong>
+                <span id="dashPowerStatus">Pemakaian normal hemat</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- SKYLIGHT + INDOOR GREENERY SUMMARY -->
+          <article class="panel skylight-dashboard-panel" aria-labelledby="dashboardSkylightHeading">
+            <div class="skylight-dashboard-head">
+              <div>
+                <p class="eyebrow">INDOOR GREENERY • SMART SKYLIGHT</p>
+                <h3 id="dashboardSkylightHeading">Cahaya Alami & Ventilasi</h3>
+                <p class="dashboard-skylight-sub">Dua atap kaca otomatis melindungi area tanaman dan membantu mengatur udara rumah.</p>
+              </div>
+              <button class="btn-subtle" id="dashboardSkylightOpen" type="button">Atur Skylight →</button>
+            </div>
+            <div class="skylight-mini-grid">
+              <div class="skylight-mini-card" id="dashSkylightCard-skylight1">
+                <div class="skylight-mini-visual" aria-hidden="true">☀️🌿</div>
+                <div class="skylight-mini-copy">
+                  <strong>Skylight Taman 1</strong>
+                  <span id="dashSkylightStatus-skylight1">CLOSED • AUTO</span>
+                  <small id="dashSkylightCondition-skylight1">Aman • Cahaya alami cukup</small>
+                </div>
+              </div>
+              <div class="skylight-mini-card" id="dashSkylightCard-skylight2">
+                <div class="skylight-mini-visual" aria-hidden="true">☀️🌿</div>
+                <div class="skylight-mini-copy">
+                  <strong>Skylight Taman 2</strong>
+                  <span id="dashSkylightStatus-skylight2">CLOSED • AUTO</span>
+                  <small id="dashSkylightCondition-skylight2">Aman • Cahaya alami cukup</small>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <!-- QUICK ACTIONS PANEL -->
+          <div class="panel quick-actions-panel">
+            <div class="panel-head">
+              <div>
+                <h3>Aksi Cepat Rumah</h3>
+                <p>Jalankan fungsi penting dengan satu sentuhan besar dan jelas.</p>
+              </div>
+              <span class="panel-tag">AKSI UTAMA</span>
+            </div>
+            <div class="quick-action-buttons">
+              <!-- Quick All Lights -->
+              <button class="quick-action-btn" id="dashQuickAllLights" type="button">
+                <span class="action-icon" aria-hidden="true">💡</span>
+                <div class="action-info">
+                  <strong>Semua Lampu</strong>
+                  <span id="dashQuickLightStatus">Matikan / Nyalakan Semua</span>
+                </div>
+                <span class="action-badge" id="dashQuickLightBadge">4 ON</span>
+              </button>
+
+              <!-- Quick Home Mode -->
+              <button class="quick-action-btn" id="dashQuickHomeMode" type="button">
+                <span class="action-icon" aria-hidden="true">🏠</span>
+                <div class="action-info">
+                  <strong>Mode Rumah (HOME)</strong>
+                  <span>Kondisi normal berpenghuni</span>
+                </div>
+                <span class="action-badge active" id="dashQuickHomeBadge">AKTIF</span>
+              </button>
+
+              <!-- Quick Away Mode -->
+              <button class="quick-action-btn" id="dashQuickAwayMode" type="button">
+                <span class="action-icon" aria-hidden="true">🧳</span>
+                <div class="action-info">
+                  <strong>Mode Pergi (AWAY)</strong>
+                  <span>Lampu OFF • AC Standby</span>
+                </div>
+                <span class="action-badge" id="dashQuickAwayBadge">SIAP</span>
+              </button>
+
+              <!-- Quick Temperature shortcut -->
+              <button class="quick-action-btn" id="dashQuickTempBtn" data-page="hvac" type="button">
+                <span class="action-icon" aria-hidden="true">❄</span>
+                <div class="action-info">
+                  <strong>Atur Suhu Rumah</strong>
+                  <span id="dashQuickTempStatus">Suhu Rata-rata 24.5°C</span>
+                </div>
+                <span class="action-arrow" aria-hidden="true">→</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- DASHBOARD TWO-COLUMN DETAIL -->
+          <div class="dashboard-grid">
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <h3>Status Sistem Terintegrasi</h3>
+                  <p>Seluruh modul tersinkronisasi pada status Rumah 01.</p>
+                </div>
+                <span class="status-indicator-live">● REALTIME</span>
+              </div>
+              <div class="system-list">
+                <div class="system-item">
+                  <div class="system-item-left">
+                    <span class="item-icon" aria-hidden="true">💡</span>
+                    <div>
+                      <strong>Sistem Lampu (Lighting)</strong>
+                      <small id="dashSysLightDesc">4 ruangan menyala, 2 padam otomatis</small>
+                    </div>
+                  </div>
+                  <span class="system-status-chip green" id="dashSysLightChip">Aktif Normal</span>
+                </div>
+
+                <div class="system-item">
+                  <div class="system-item-left">
+                    <span class="item-icon" aria-hidden="true">❄</span>
+                    <div>
+                      <strong>Sistem Suhu & AC (HVAC)</strong>
+                      <small id="dashSysHVACDesc">3 zona aktif pendinginan, 3 standby</small>
+                    </div>
+                  </div>
+                  <span class="system-status-chip green" id="dashSysHVACChip">Sesuai Target</span>
+                </div>
+
+                <div class="system-item">
+                  <div class="system-item-left">
+                    <span class="item-icon" aria-hidden="true">🛡️</span>
+                    <div>
+                      <strong>Sistem Keamanan (Security)</strong>
+                      <small id="dashSysSecDesc">Semua pintu & jendela tertutup rapat</small>
+                    </div>
+                  </div>
+                  <span class="system-status-chip green" id="dashSysSecChip">Terlindungi</span>
+                </div>
+
+                <div class="system-item">
+                  <div class="system-item-left">
+                    <span class="item-icon" aria-hidden="true">⚡</span>
+                    <div>
+                      <strong>Penghematan Energi (Energy)</strong>
+                      <small id="dashSysEnergyDesc">Otomatisasi penghematan aktif 18.7%</small>
+                    </div>
+                  </div>
+                  <span class="system-status-chip green" id="dashSysEnergyChip">Hemat Energi</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head">
+                <div>
+                  <h3>Aktivitas & Riwayat Terbaru</h3>
+                  <p>Peristiwa interaksi terbaru dari seluruh modul rumah.</p>
+                </div>
+                <button class="btn-subtle" data-page="notifications" type="button">Lihat Semua →</button>
+              </div>
+              <div class="activity-list" id="dashboardActivityList">
+                <!-- Dynamically rendered activity items -->
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- =====================================================
+             PAGE 3: ROOM MONITORING / RUANGAN
+             ===================================================== -->
+        <section id="page-rooms" class="page-view hidden" aria-labelledby="roomsHeading">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">HOUSE 01 • DENAH SATU LANTAI</p>
+              <h1 id="roomsHeading">Pantau Ruangan</h1>
+              <p class="heading-sub">Sentuh ruangan pada denah untuk melihat kondisi detail serta mengatur lampu dan suhu secara langsung.</p>
+            </div>
+            <div class="status-pill status-safe">
+              <span class="pill-dot" aria-hidden="true"></span>
+              <span id="roomStatusText">6 Ruangan Terhubung</span>
+            </div>
+          </div>
+
+          <!-- SUMMARY STRIP -->
+          <div class="room-summary">
+            <div class="summary-box">
+              <small>RUANGAN BERPENGHUNI</small>
+              <strong id="roomOccupiedCount">3 Ruangan</strong>
+              <span>Terdeteksi aktivitas kehadiran</span>
+            </div>
+            <div class="summary-box">
+              <small>RUANGAN KOSONG</small>
+              <strong id="roomEmptyCount">3 Ruangan</strong>
+              <span>Otomatis hemat energi</span>
+            </div>
+            <div class="summary-box">
+              <small>LAMPU MENYALA</small>
+              <strong id="roomLightsRatio">4 / 6</strong>
+              <span>Status lampu tersinkron</span>
+            </div>
+            <div class="summary-box">
+              <small>MODE OTOMATIS</small>
+              <strong id="roomAutoModeState">AKTIF</strong>
+              <span>Kenyamanan keluarga terjaga</span>
+            </div>
+          </div>
+
+          <!-- DIGITAL FLOOR PLAN CONTAINER -->
+          <div class="panel house-layout-panel">
+            <div class="panel-head floor-plan-head">
+              <div>
+                <h3>Denah Digital Rumah 01 (Satu Lantai)</h3>
+                <p>Klik salah satu ruangan untuk memilih dan mengontrol ruangan tersebut.</p>
+              </div>
+              <div class="map-legend">
+                <span class="legend-item"><i class="legend-dot occupied" aria-hidden="true"></i> Berpenghuni</span>
+                <span class="legend-item"><i class="legend-dot empty" aria-hidden="true"></i> Kosong</span>
+                <span class="legend-item"><i class="legend-dot selected-dot" aria-hidden="true"></i> Ruangan Terpilih</span>
+              </div>
+            </div>
+
+            <!-- Mobile scroll cue -->
+            <div class="mobile-scroll-hint" aria-hidden="true">
+              <span>👉</span> Geser denah ke samping untuk melihat seluruh ruangan dengan jelas
+            </div>
+
+            <!-- Floor Plan Scroll Container -->
+            <div class="floor-plan-scroll" id="floorPlanScroll">
+              <div class="house-plan" id="roomPlan" role="region" aria-label="Denah Interaktif Rumah 01">
+                <!-- Architectural helpers & boundary markers -->
+                <div class="plan-compass" aria-hidden="true">
+                  <span>U (North) ↑</span>
+                </div>
+                <div class="plan-door-tag front-door" aria-hidden="true">🚪 PINTU DEPAN UTAMA</div>
+                <div class="plan-door-tag back-door" aria-hidden="true">🚪 PINTU BELAKANG / TAMAN</div>
+                <div class="plan-driveway-tag" aria-hidden="true">🚗 AKSES GARASI & CARPORT</div>
+
+                <!-- 6 Interactive Rooms (populated via JS or static semantic buttons) -->
+                <!-- Living Room -->
+                <button type="button" class="plan-room selected" data-room-id="living" id="planRoom-living">
+                  <div class="plan-room-header">
+                    <span class="plan-room-icon" aria-hidden="true">🛋️</span>
+                    <strong class="plan-room-name">Ruang Tamu (Living Room)</strong>
+                  </div>
+                  <div class="plan-room-badges">
+                    <span class="plan-badge occ" id="planOcc-living">👤 2 Orang</span>
+                    <span class="plan-badge temp" id="planTemp-living">24.5°C</span>
+                    <span class="plan-badge light" id="planLight-living">💡 80%</span>
+                    <span class="plan-badge hvac" id="planHVAC-living">❄ COOL</span>
+                  </div>
+                </button>
+
+                <!-- Master Bedroom -->
+                <button type="button" class="plan-room" data-room-id="master" id="planRoom-master">
+                  <div class="plan-room-header">
+                    <span class="plan-room-icon" aria-hidden="true">🛏️</span>
+                    <strong class="plan-room-name">Kamar Utama (Master Bed)</strong>
+                  </div>
+                  <div class="plan-room-badges">
+                    <span class="plan-badge occ" id="planOcc-master">👤 1 Orang</span>
+                    <span class="plan-badge temp" id="planTemp-master">23.5°C</span>
+                    <span class="plan-badge light" id="planLight-master">💡 60%</span>
+                    <span class="plan-badge hvac" id="planHVAC-master">❄ AUTO</span>
+                  </div>
+                </button>
+
+                <!-- Bedroom 2 -->
+                <button type="button" class="plan-room empty" data-room-id="bed2" id="planRoom-bed2">
+                  <div class="plan-room-header">
+                    <span class="plan-room-icon" aria-hidden="true">🛏️</span>
+                    <strong class="plan-room-name">Kamar Tidur 2 (Bedroom 2)</strong>
+                  </div>
+                  <div class="plan-room-badges">
+                    <span class="plan-badge occ" id="planOcc-bed2">Kosong</span>
+                    <span class="plan-badge temp" id="planTemp-bed2">25.5°C</span>
+                    <span class="plan-badge light off" id="planLight-bed2">💡 OFF</span>
+                    <span class="plan-badge hvac off" id="planHVAC-bed2">STANDBY</span>
+                  </div>
+                </button>
+
+                <!-- Kitchen -->
+                <button type="button" class="plan-room" data-room-id="kitchen" id="planRoom-kitchen">
+                  <div class="plan-room-header">
+                    <span class="plan-room-icon" aria-hidden="true">🍳</span>
+                    <strong class="plan-room-name">Dapur (Kitchen)</strong>
+                  </div>
+                  <div class="plan-room-badges">
+                    <span class="plan-badge occ" id="planOcc-kitchen">Aktivitas</span>
+                    <span class="plan-badge temp" id="planTemp-kitchen">25.0°C</span>
+                    <span class="plan-badge light" id="planLight-kitchen">💡 75%</span>
+                    <span class="plan-badge hvac" id="planHVAC-kitchen">❄ COOL</span>
+                  </div>
+                </button>
+
+                <!-- Bathroom -->
+                <button type="button" class="plan-room empty" data-room-id="bath" id="planRoom-bath">
+                  <div class="plan-room-header">
+                    <span class="plan-room-icon" aria-hidden="true">🚿</span>
+                    <strong class="plan-room-name">Kamar Mandi (Bathroom)</strong>
+                  </div>
+                  <div class="plan-room-badges">
+                    <span class="plan-badge occ" id="planOcc-bath">Kosong</span>
+                    <span class="plan-badge temp" id="planTemp-bath">26.0°C</span>
+                    <span class="plan-badge light off" id="planLight-bath">💡 OFF</span>
+                    <span class="plan-badge hvac off" id="planHVAC-bath">STANDBY</span>
+                  </div>
+                </button>
+
+                <!-- Garage -->
+                <button type="button" class="plan-room empty" data-room-id="garage" id="planRoom-garage">
+                  <div class="plan-room-header">
+                    <span class="plan-room-icon" aria-hidden="true">🚗</span>
+                    <strong class="plan-room-name">Garasi (Garage)</strong>
+                  </div>
+                  <div class="plan-room-badges">
+                    <span class="plan-badge occ" id="planOcc-garage">Kosong</span>
+                    <span class="plan-badge temp" id="planTemp-garage">27.0°C</span>
+                    <span class="plan-badge light off" id="planLight-garage">💡 OFF</span>
+                    <span class="plan-badge hvac off" id="planHVAC-garage">STANDBY</span>
+                  </div>
+                </button>
+
+                <button type="button" class="plan-skylight" data-skylight-id="skylight1" id="planSkylight-skylight1" aria-label="Atur Skylight Taman 1">
+                  <span class="plan-skylight-icon" aria-hidden="true">☀️</span>
+                  <span>Skylight 1</span>
+                  <small id="planSkylightStatus-skylight1">CLOSED</small>
+                  <i aria-hidden="true">🌿</i>
+                </button>
+                <button type="button" class="plan-skylight" data-skylight-id="skylight2" id="planSkylight-skylight2" aria-label="Atur Skylight Taman 2">
+                  <span class="plan-skylight-icon" aria-hidden="true">☀️</span>
+                  <span>Skylight 2</span>
+                  <small id="planSkylightStatus-skylight2">CLOSED</small>
+                  <i aria-hidden="true">🌿</i>
+                </button>
+              </div>
+            </div>
+            <div class="single-storey-footer">
+              <span>🏠 Denah Rumah Satu Lantai (Single-Storey House 01) • Smart Residential Prototype</span>
+            </div>
+          </div>
+
+          <!-- SKYLIGHT CONTROL & INDOOR GREENERY -->
+          <article class="panel skylight-control-panel" id="skylightControlPanel" aria-labelledby="skylightControlHeading">
+            <div class="panel-head skylight-panel-head">
+              <div>
+                <p class="eyebrow">SMART ENVIRONMENT • 2 UNIT</p>
+                <h3 id="skylightControlHeading">Skylight & Ruang Hijau</h3>
+                <p>Kontrol dua atap kaca di atas area tanaman. Mode otomatis menyesuaikan rumah terhadap kondisi lingkungan.</p>
+              </div>
+              <span class="panel-tag" id="skylightSummaryTag">0 OPEN • 2 CLOSED</span>
+            </div>
+
+            <div class="skylight-cards-grid">
+              <article class="skylight-card" data-skylight-card="skylight1">
+                <div class="skylight-card-top">
+                  <div class="skylight-title-wrap">
+                    <div class="skylight-visual" aria-hidden="true"><span>☀️</span><span>🌿</span></div>
+                    <div>
+                      <span class="eyebrow">AREA TAMAN 01</span>
+                      <h4>Skylight Taman 1</h4>
+                      <p>Cahaya alami & ventilasi ruang hijau</p>
+                    </div>
+                  </div>
+                  <span class="skylight-status-chip closed" id="skylightStatusChip-skylight1">CLOSED</span>
+                </div>
+                <div class="skylight-detail-row">
+                  <div class="skylight-detail-item"><small>MODE</small><strong id="skylightModeLabel-skylight1">AUTO</strong></div>
+                  <div class="skylight-detail-item"><small>KONDISI</small><strong id="skylightConditionLabel-skylight1">Aman</strong></div>
+                  <div class="skylight-detail-item"><small>BUKAAN</small><strong id="skylightOpeningLabel-skylight1">0%</strong></div>
+                </div>
+                <div class="skylight-progress" aria-label="Posisi bukaan skylight"><span id="skylightProgress-skylight1" style="width:0%"></span></div>
+                <div class="skylight-mode-buttons" role="group" aria-label="Mode Skylight Taman 1">
+                  <button type="button" class="skylight-mode-btn active" data-skylight-action="mode" data-skylight-id="skylight1" data-mode="auto">AUTO</button>
+                  <button type="button" class="skylight-mode-btn" data-skylight-action="mode" data-skylight-id="skylight1" data-mode="manual">MANUAL</button>
+                </div>
+                <div class="skylight-open-buttons" role="group" aria-label="Kontrol Skylight Taman 1">
+                  <button type="button" class="skylight-control-btn secondary" data-skylight-action="close" data-skylight-id="skylight1">Tutup</button>
+                  <button type="button" class="skylight-control-btn primary" data-skylight-action="open" data-skylight-id="skylight1">Buka</button>
+                </div>
+                <p class="skylight-note" id="skylightNote-skylight1">AUTO aktif • Cahaya alami cukup.</p>
+              </article>
+
+              <article class="skylight-card" data-skylight-card="skylight2">
+                <div class="skylight-card-top">
+                  <div class="skylight-title-wrap">
+                    <div class="skylight-visual" aria-hidden="true"><span>☀️</span><span>🌿</span></div>
+                    <div>
+                      <span class="eyebrow">AREA TAMAN 02</span>
+                      <h4>Skylight Taman 2</h4>
+                      <p>Panel kaca otomatis di area tanaman kedua</p>
+                    </div>
+                  </div>
+                  <span class="skylight-status-chip closed" id="skylightStatusChip-skylight2">CLOSED</span>
+                </div>
+                <div class="skylight-detail-row">
+                  <div class="skylight-detail-item"><small>MODE</small><strong id="skylightModeLabel-skylight2">AUTO</strong></div>
+                  <div class="skylight-detail-item"><small>KONDISI</small><strong id="skylightConditionLabel-skylight2">Aman</strong></div>
+                  <div class="skylight-detail-item"><small>BUKAAN</small><strong id="skylightOpeningLabel-skylight2">0%</strong></div>
+                </div>
+                <div class="skylight-progress" aria-label="Posisi bukaan skylight"><span id="skylightProgress-skylight2" style="width:0%"></span></div>
+                <div class="skylight-mode-buttons" role="group" aria-label="Mode Skylight Taman 2">
+                  <button type="button" class="skylight-mode-btn active" data-skylight-action="mode" data-skylight-id="skylight2" data-mode="auto">AUTO</button>
+                  <button type="button" class="skylight-mode-btn" data-skylight-action="mode" data-skylight-id="skylight2" data-mode="manual">MANUAL</button>
+                </div>
+                <div class="skylight-open-buttons" role="group" aria-label="Kontrol Skylight Taman 2">
+                  <button type="button" class="skylight-control-btn secondary" data-skylight-action="close" data-skylight-id="skylight2">Tutup</button>
+                  <button type="button" class="skylight-control-btn primary" data-skylight-action="open" data-skylight-id="skylight2">Buka</button>
+                </div>
+                <p class="skylight-note" id="skylightNote-skylight2">AUTO aktif • Cahaya alami cukup.</p>
+              </article>
+            </div>
+          </article>
+
+          <!-- SELECTED ROOM CONTROLS & MONITORING GRID -->
+          <div class="room-monitor-grid">
+            <!-- Selected Room Control Card -->
+            <article class="panel room-detail-panel" aria-labelledby="selectedRoomTitle">
+              <div class="panel-head">
+                <div class="room-title-wrap">
+                  <span class="room-big-icon" id="selectedRoomIcon" aria-hidden="true">🛋️</span>
+                  <div>
+                    <h3 id="selectedRoomTitle">Living Room</h3>
+                    <p id="selectedRoomSub">Pengaturan ruangan aktif</p>
+                  </div>
+                </div>
+                <span id="selectedRoomBadge" class="room-chip active-chip">BERPENGHUNI</span>
+              </div>
+
+              <!-- 4 Room Indicators -->
+              <div class="room-detail-metrics">
+                <div class="metric-box">
+                  <small>KEHADIRAN</small>
+                  <strong id="selectedRoomPeople">2 Orang</strong>
+                  <span id="selectedRoomOccupancyText">Ada penghuni</span>
+                </div>
+                <div class="metric-box">
+                  <small>SUHU RUANGAN</small>
+                  <strong id="selectedRoomTemp">24.5°C</strong>
+                  <span id="selectedRoomTarget">Target 24°C</span>
+                </div>
+                <div class="metric-box">
+                  <small>STATUS LAMPU</small>
+                  <strong id="selectedRoomLightState">MENYALA (80%)</strong>
+                  <span id="selectedRoomLightWatt">Konsumsi ~100 W</span>
+                </div>
+                <div class="metric-box">
+                  <small>STATUS AC (HVAC)</small>
+                  <strong id="selectedRoomHVACState">AKTIF • COOL</strong>
+                  <span id="selectedRoomHVACMode">Fan Sedang</span>
+                </div>
+              </div>
+
+              <!-- Room Controls Strip -->
+              <div class="room-quick-controls">
+                <div class="room-control-row">
+                  <div class="control-label-group">
+                    <span class="control-icon" aria-hidden="true">💡</span>
+                    <div>
+                      <strong>Sakelar Lampu Ruangan</strong>
+                      <small id="selectedRoomLightNote">Ubah status lampu ruangan terpilih</small>
+                    </div>
+                  </div>
+                  <label class="toggle-switch" aria-label="Nyalakan atau matikan lampu ruangan">
+                    <input type="checkbox" id="selectedRoomLightToggle" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+
+                <div class="room-control-row brightness-row">
+                  <div class="control-label-group">
+                    <span class="control-icon" aria-hidden="true">☀️</span>
+                    <div>
+                      <strong>Tingkat Kecerahan Lampu</strong>
+                      <small>Geser untuk mengatur cahaya</small>
+                    </div>
+                  </div>
+                  <div class="slider-control-wrap">
+                    <b id="selectedRoomBrightnessVal">80%</b>
+                    <input type="range" min="0" max="100" value="80" id="selectedRoomBrightnessSlider" aria-label="Tingkat Kecerahan Lampu Ruangan">
+                  </div>
+                </div>
+
+                <div class="room-control-row">
+                  <div class="control-label-group">
+                    <span class="control-icon" aria-hidden="true">❄</span>
+                    <div>
+                      <strong>Pendingin Ruangan (HVAC)</strong>
+                      <small id="selectedRoomHVACNote">Kontrol AC ruangan terpilih</small>
+                    </div>
+                  </div>
+                  <label class="toggle-switch" aria-label="Nyalakan atau matikan AC ruangan">
+                    <input type="checkbox" id="selectedRoomHVACToggle" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+
+                <div class="room-control-row">
+                  <div class="control-label-group">
+                    <span class="control-icon" aria-hidden="true">🎯</span>
+                    <div>
+                      <strong>Target Suhu Ruangan</strong>
+                      <small>Atur temperatur ideal</small>
+                    </div>
+                  </div>
+                  <div class="temp-stepper">
+                    <button class="step-btn" id="roomTempMinusBtn" type="button" aria-label="Turunkan Suhu">−</button>
+                    <span class="step-val" id="roomTargetTempVal">24°C</span>
+                    <button class="step-btn" id="roomTempPlusBtn" type="button" aria-label="Naikkan Suhu">+</button>
+                  </div>
+                </div>
+              </div>
+
+              <div class="automation-note" id="selectedRoomNote">
+                ✨ <strong>Kenyamanan Aktif:</strong> Ruangan terdeteksi berpenghuni. Sistem menjaga pencahayaan serta suhu pada kondisi ideal untuk orang tua dan keluarga.
+              </div>
+            </article>
+
+            <!-- All Rooms Overview Table/List -->
+            <article class="panel room-all-panel" aria-labelledby="allRoomsHeading">
+              <div class="panel-head">
+                <div>
+                  <h3 id="allRoomsHeading">Kondisi Seluruh 6 Ruangan</h3>
+                  <p>Semua ruangan tersinkronisasi pada status data yang sama.</p>
+                </div>
+                <span class="panel-badge-info">6 RUANGAN</span>
+              </div>
+              <div class="condition-list" id="roomConditionList">
+                <!-- Dynamically populated room rows -->
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- =====================================================
+             PAGE 4: LIGHTING / LAMPU
+             ===================================================== -->
+        <section id="page-lighting" class="page-view hidden" aria-labelledby="lightingHeading">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">HOUSE 01 • KONTROL PENCAHAYAAN</p>
+              <h1 id="lightingHeading">Kontrol Lampu</h1>
+              <p class="heading-sub">Tombol dan sakelar dirancang besar, jelas terbaca, dan ramah sentuhan untuk kenyamanan orang tua.</p>
+            </div>
+            <div class="status-pill status-safe">
+              <span class="pill-dot" aria-hidden="true"></span>
+              <span id="lightingStatusBadge">Lampu Pintar Aktif</span>
+            </div>
+          </div>
+
+          <!-- LIGHTING METRIC STRIP -->
+          <div class="lighting-overview">
+            <div class="light-summary-card">
+              <div class="summary-icon-wrap" aria-hidden="true">
+                <span class="summary-icon">💡</span>
+              </div>
+              <div>
+                <small>LAMPU MENYALA</small>
+                <strong id="lightingActiveCount">4 / 6 Ruangan</strong>
+                <span>Ruangan terhubung sistem</span>
+              </div>
+            </div>
+
+            <div class="light-summary-card">
+              <div class="summary-icon-wrap" aria-hidden="true">
+                <span class="summary-icon">⚡</span>
+              </div>
+              <div>
+                <small>ESTIMASI BEBAN DAYA</small>
+                <strong id="lightingTotalWatt">246 W</strong>
+                <span>Konsumsi daya lampu saat ini</span>
+              </div>
+            </div>
+
+            <div class="light-summary-card">
+              <div class="summary-icon-wrap" aria-hidden="true">
+                <span class="summary-icon">✨</span>
+              </div>
+              <div>
+                <small>OTOMATISASI KEHADIRAN</small>
+                <strong id="lightingAutoText">AKTIF (AUTO)</strong>
+                <span>Padam saat ruangan kosong</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- GLOBAL LIGHTING CONTROLS TOOLBAR -->
+          <div class="panel lighting-toolbar-panel">
+            <div class="toolbar-info">
+              <div>
+                <h3>Kontrol Seluruh Rumah (Master Controls)</h3>
+                <p>Nyalakan atau matikan semua lampu rumah dengan satu sentuhan.</p>
+              </div>
+            </div>
+            <div class="toolbar-action-buttons">
+              <button class="btn-action-primary btn-lg" id="btnAllLightsOn" type="button">
+                <span aria-hidden="true">💡</span> SEMUA LAMPU ON
+              </button>
+              <button class="btn-action-secondary btn-lg" id="btnAllLightsOff" type="button">
+                <span aria-hidden="true">🌑</span> SEMUA LAMPU OFF
+              </button>
+              <div class="toolbar-toggle-item">
+                <label class="toggle-switch-labelled" for="globalLightingAutoToggle">
+                  <span>Otomatisasi Kehadiran:</span>
+                  <div class="toggle-switch">
+                    <input type="checkbox" id="globalLightingAutoToggle" checked>
+                    <span class="toggle-slider"></span>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- 6 ROOM LIGHT CARDS GRID -->
+          <div class="light-grid" id="lightCardsGrid" role="region" aria-label="Daftar Kontrol Lampu 6 Ruangan">
+            <!-- Populated via JavaScript for 6 rooms with large toggles and sliders -->
+          </div>
+        </section>
+
+        <!-- =====================================================
+             PAGE 5: CLIMATE / SUHU & AC (HVAC)
+             ===================================================== -->
+        <section id="page-hvac" class="page-view hidden" aria-labelledby="hvacHeading">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">HOUSE 01 • PENGATURAN IKLIM & KENYAMANAN</p>
+              <h1 id="hvacHeading">Kontrol Suhu & AC</h1>
+              <p class="heading-sub">Pengaturan suhu dibuat besar, jelas, dan nyaman digunakan untuk menjaga kesejukan rumah.</p>
+            </div>
+            <div class="status-pill status-safe">
+              <span class="pill-dot" aria-hidden="true"></span>
+              <span id="hvacStatusBadge">Sistem AC Normal</span>
+            </div>
+          </div>
+
+          <!-- HVAC KPI STRIP -->
+          <div class="hvac-summary">
+            <div class="climate-summary-card">
+              <span class="summary-icon" aria-hidden="true">🌡️</span>
+              <div>
+                <small>SUHU RATA-RATA</small>
+                <strong id="hvacAvgTempDisplay">24.5°C</strong>
+                <span>Seluruh rumah</span>
+              </div>
+            </div>
+
+            <div class="climate-summary-card">
+              <span class="summary-icon" aria-hidden="true">🎯</span>
+              <div>
+                <small>TARGET RUANG TERPILIH</small>
+                <strong id="hvacSelectedTargetDisplay">24°C</strong>
+                <span id="hvacSelectedZoneName">Ruang Tamu</span>
+              </div>
+            </div>
+
+            <div class="climate-summary-card">
+              <span class="summary-icon" aria-hidden="true">❄</span>
+              <div>
+                <small>BEBAN SISTEM PENDINGIN</small>
+                <strong id="hvacLoadDisplay">42%</strong>
+                <span id="hvacActiveZonesDisplay">3 Zona Aktif</span>
+              </div>
+            </div>
+
+            <div class="climate-summary-card">
+              <span class="summary-icon" aria-hidden="true">⚡</span>
+              <div>
+                <small>DAYA ESTIMASI AC</small>
+                <strong id="hvacPowerDisplay">2.3 kW</strong>
+                <span>Daya pendingin saat ini</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- MAIN HVAC CONTROL TWO-COLUMN GRID -->
+          <div class="hvac-main-grid">
+            <!-- Active Room Thermostat Controller -->
+            <article class="panel climate-controller-card" aria-labelledby="thermostatHeading">
+              <div class="panel-head">
+                <div>
+                  <h3 id="thermostatHeading">Pengatur Suhu Ruangan (Termostat)</h3>
+                  <p>Pilih salah satu dari 6 ruangan di bawah untuk mengatur suhunya.</p>
+                </div>
+                <div class="hvac-power-toggle-wrap">
+                  <label class="hvac-master-toggle" for="hvacZonePowerToggle">
+                    <span id="hvacPowerToggleLabel">AC RUANGAN: ON</span>
+                    <div class="toggle-switch">
+                      <input type="checkbox" id="hvacZonePowerToggle" checked>
+                      <span class="toggle-slider"></span>
+                    </div>
+                  </label>
+                </div>
+              </div>
+
+              <!-- 6 Zone Selector Buttons -->
+              <div class="zone-selector-grid" id="hvacZoneSelectorGrid" role="tablist" aria-label="Pilih Zona Ruangan">
+                <!-- 6 Buttons populated dynamically -->
+              </div>
+
+              <!-- Big Thermostat Display -->
+              <div class="thermostat-display-box">
+                <div class="thermostat-zone-title">
+                  <span id="thermostatZoneTitle">RUANG TAMU (LIVING ROOM)</span>
+                </div>
+
+                <div class="thermostat-current-wrap">
+                  <span class="thermostat-current-label">Suhu Ruangan Saat Ini:</span>
+                  <div class="current-temp-big" id="thermostatCurrentTemp">24.5°C</div>
+                </div>
+
+                <!-- Large Target Stepper -->
+                <div class="target-stepper-box">
+                  <span class="target-label">Target Suhu yang Diinginkan:</span>
+                  <div class="setpoint-controller">
+                    <button class="btn-stepper minus-btn" id="hvacMinusTempBtn" type="button" aria-label="Turunkan 1 Derajat Celcius">
+                      <span aria-hidden="true">−</span>
+                    </button>
+                    <div class="setpoint-number-wrap">
+                      <span class="setpoint-number" id="hvacTargetTempDisplay">24°C</span>
+                      <small class="setpoint-helper">Target Ideal Nyaman</small>
+                    </div>
+                    <button class="btn-stepper plus-btn" id="hvacPlusTempBtn" type="button" aria-label="Naikkan 1 Derajat Celcius">
+                      <span aria-hidden="true">+</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Mode Buttons: AUTO, COOL, DRY, FAN, OFF -->
+                <div class="mode-selection-wrap">
+                  <span class="mode-selection-title">Mode Operasi AC:</span>
+                  <div class="mode-buttons-row" role="radiogroup" aria-label="Mode Operasi AC">
+                    <button class="btn-mode active" data-mode="COOL" type="button" role="radio" aria-checked="true">
+                      <span class="mode-icon" aria-hidden="true">❄</span>
+                      <span>COOL (Dingin)</span>
+                    </button>
+                    <button class="btn-mode" data-mode="AUTO" type="button" role="radio" aria-checked="false">
+                      <span class="mode-icon" aria-hidden="true">✨</span>
+                      <span>AUTO (Otomatis)</span>
+                    </button>
+                    <button class="btn-mode" data-mode="DRY" type="button" role="radio" aria-checked="false">
+                      <span class="mode-icon" aria-hidden="true">💧</span>
+                      <span>DRY (Kering)</span>
+                    </button>
+                    <button class="btn-mode" data-mode="FAN" type="button" role="radio" aria-checked="false">
+                      <span class="mode-icon" aria-hidden="true">💨</span>
+                      <span>FAN (Kipas)</span>
+                    </button>
+                    <button class="btn-mode" data-mode="OFF" type="button" role="radio" aria-checked="false">
+                      <span class="mode-icon" aria-hidden="true">⏻</span>
+                      <span>OFF (Mati)</span>
+                    </button>
+                  </div>
+                </div>
+
+                <!-- Environmental Indicators -->
+                <div class="comfort-environmental-row">
+                  <div class="env-item">
+                    <span class="env-icon" aria-hidden="true">👥</span>
+                    <div>
+                      <small>PENGHUNI</small>
+                      <strong id="hvacZoneOccupancy">2 Orang di Ruangan</strong>
+                    </div>
+                  </div>
+                  <div class="env-item">
+                    <span class="env-icon" aria-hidden="true">💨</span>
+                    <div>
+                      <small>KECEPATAN KIPAS</small>
+                      <strong id="hvacFanSpeedDisplay">Sedang (Medium)</strong>
+                    </div>
+                  </div>
+                  <div class="env-item">
+                    <span class="env-icon" aria-hidden="true">💧</span>
+                    <div>
+                      <small>KELEMBAPAN</small>
+                      <strong>56% (Normal)</strong>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- Right Column: Smart HVAC Rules & Comfort Score -->
+            <div class="hvac-side-column">
+              <article class="panel smart-hvac-panel" aria-labelledby="smartHvacRulesHeading">
+                <div class="panel-head">
+                  <div>
+                    <h3 id="smartHvacRulesHeading">Otomatisasi Suhu Pintar</h3>
+                    <p>Sinkronisasi hemat energi dan kenyamanan.</p>
+                  </div>
+                  <label class="toggle-switch" aria-label="Aktifkan Otomatisasi HVAC">
+                    <input type="checkbox" id="smartHVACMasterToggle" checked>
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+
+                <div class="smart-status-banner">
+                  <span class="smart-banner-icon" aria-hidden="true">✨</span>
+                  <div>
+                    <strong id="smartHVACStatusTitle">Otomatisasi HVAC Aktif</strong>
+                    <p id="smartHVACStatusDesc">AC ruangan kosong otomatis beralih ke mode standby untuk menghemat biaya listrik keluarga.</p>
+                  </div>
+                </div>
+
+                <div class="hvac-rules-list">
+                  <div class="hvac-rule-item">
+                    <span class="rule-icon" aria-hidden="true">👤</span>
+                    <div class="rule-text">
+                      <strong>Standby Ruangan Kosong</strong>
+                      <p>Ruangan tanpa penghuni masuk mode hemat energi.</p>
+                    </div>
+                    <label class="toggle-switch" aria-label="Standby Ruangan Kosong">
+                      <input type="checkbox" id="ruleOccupancyToggle" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+
+                  <div class="hvac-rule-item">
+                    <span class="rule-icon" aria-hidden="true">🌙</span>
+                    <div class="rule-text">
+                      <strong>Jadwal Kenyamanan Tidur</strong>
+                      <p>Kamar tidur dijaga 23°C nyaman di malam hari.</p>
+                    </div>
+                    <label class="toggle-switch" aria-label="Jadwal Kenyamanan Tidur">
+                      <input type="checkbox" id="ruleNightToggle" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+
+                  <div class="hvac-rule-item">
+                    <span class="rule-icon" aria-hidden="true">🧳</span>
+                    <div class="rule-text">
+                      <strong>Standby Saat Mode Pergi</strong>
+                      <p>Seluruh AC otomatis standby saat rumah kosong.</p>
+                    </div>
+                    <label class="toggle-switch" aria-label="Standby Saat Mode Pergi">
+                      <input type="checkbox" id="ruleAwayToggle" checked>
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class="schedule-info-box">
+                  <small>JADWAL RUTIN TERJADWAL</small>
+                  <strong>Pukul 22:00 — Mode Malam Tenang</strong>
+                  <p>Kamar Utama 23°C • Ruang Tamu 25°C • Kipas Senyap Rendah</p>
+                </div>
+              </article>
+
+              <!-- Comfort Score Card -->
+              <article class="panel comfort-panel" aria-labelledby="comfortScoreHeading">
+                <div class="panel-head">
+                  <div>
+                    <h3 id="comfortScoreHeading">Indeks Kenyamanan Keluarga</h3>
+                    <p>Tingkat kenyamanan suhu rumah saat ini.</p>
+                  </div>
+                </div>
+                <div class="comfort-score-big">
+                  <strong id="comfortScoreVal">94</strong>
+                  <span>/ 100</span>
+                </div>
+                <div class="score-progress-bar">
+                  <span class="score-fill" id="comfortScoreFillBar" style="width: 94%;"></span>
+                </div>
+                <p class="comfort-desc" id="comfortScoreDesc">Kondisi ruangan sangat nyaman dan ramah bagi lansia serta anak-anak.</p>
+              </article>
+            </div>
+          </div>
+
+          <!-- Bottom: Full 6 Zones State Table -->
+          <article class="panel hvac-table-panel" aria-labelledby="hvacTableHeading">
+            <div class="panel-head">
+              <div>
+                <h3 id="hvacTableHeading">Ringkasan 6 Zona Pendingin Rumah 01</h3>
+                <p>Data tersinkronisasi langsung dengan Modul Listrik dan Ruangan.</p>
+              </div>
+              <button class="btn-subtle" id="refreshHVACTableBtn" type="button">↻ Perbarui Data</button>
+            </div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th scope="col">Zona Ruangan</th>
+                    <th scope="col">Suhu Saat Ini</th>
+                    <th scope="col">Target Suhu</th>
+                    <th scope="col">Mode Operasi</th>
+                    <th scope="col">Status Kehadiran</th>
+                    <th scope="col">Status AC</th>
+                  </tr>
+                </thead>
+                <tbody id="hvacTableBody">
+                  <!-- Populated dynamically for 6 rooms -->
+                </tbody>
+              </table>
+            </div>
+          </article>
+        </section>
+
+        <!-- =====================================================
+             PAGE 6: ENERGY / LISTRIK
+             ===================================================== -->
+        <section id="page-energy" class="page-view hidden" aria-labelledby="energyHeading">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">HOUSE 01 • PEMANTAUAN ENERGI & DAYA LISTRIK</p>
+              <h1 id="energyHeading">Pemantauan Listrik</h1>
+              <p class="heading-sub">Nilai daya listrik dihitung secara logis dan langsung merespons perubahan lampu, AC, serta mode rumah.</p>
+            </div>
+            <div class="status-pill status-safe">
+              <span class="pill-dot" aria-hidden="true"></span>
+              <span id="energyStatusBadge">Sistem Listrik Normal</span>
+            </div>
+          </div>
+
+          <!-- ENERGY KPIS -->
+          <div class="energy-kpis">
+            <article class="energy-kpi-card">
+              <div class="kpi-icon-wrap" aria-hidden="true">
+                <span class="kpi-icon">⚡</span>
+              </div>
+              <div>
+                <small>TOTAL LISTRIK HARI INI</small>
+                <strong id="energyTotalKwh">12.6 kWh</strong>
+                <span id="energyTotalNote">Pemakaian terakumulasi hari ini</span>
+              </div>
+            </article>
+
+            <article class="energy-kpi-card">
+              <div class="kpi-icon-wrap" aria-hidden="true">
+                <span class="kpi-icon">🌱</span>
+              </div>
+              <div>
+                <small>PERSENTASE PENGHEMATAN</small>
+                <strong id="energySavingPct">18.7%</strong>
+                <span id="energySavingDesc">Hasil otomatisasi pintar rumah</span>
+              </div>
+            </article>
+
+            <article class="energy-kpi-card">
+              <div class="kpi-icon-wrap" aria-hidden="true">
+                <span class="kpi-icon">💡</span>
+              </div>
+              <div>
+                <small>KONSUMSI LAMPU SAAT INI</small>
+                <strong id="energyLightingLoadVal">246 W</strong>
+                <span id="energyLightingPctText">23% dari total daya aktif</span>
+              </div>
+            </article>
+
+            <article class="energy-kpi-card">
+              <div class="kpi-icon-wrap" aria-hidden="true">
+                <span class="kpi-icon">❄</span>
+              </div>
+              <div>
+                <small>KONSUMSI AC / SUHU SAAT INI</small>
+                <strong id="energyHVACLoadVal">2.3 kW</strong>
+                <span id="energyHVACPctText">51% dari total daya aktif</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- ENERGY CHARTS & BREAKDOWN GRID -->
+          <div class="energy-main-grid">
+            <!-- Hourly Trend Simulation Chart -->
+            <article class="panel energy-trend-panel" aria-labelledby="energyTrendHeading">
+              <div class="panel-head">
+                <div>
+                  <h3 id="energyTrendHeading">Tren Pemakaian Listrik Per Jam (kWh)</h3>
+                  <p>Grafik pemakaian listrik harian berdasarkan aktivitas perangkat.</p>
+                </div>
+                <span class="status-indicator-live">● SIMULASI AKTIF</span>
+              </div>
+
+              <!-- Energy Chart Container -->
+              <div class="energy-chart-container">
+                <div class="energy-chart-y">
+                  <span>3.0</span>
+                  <span>2.0</span>
+                  <span>1.0</span>
+                  <span>0 kW</span>
+                </div>
+                <div class="energy-chart-plot" id="energyChartPlot" aria-hidden="true">
+                  <div class="grid-line g1"></div>
+                  <div class="grid-line g2"></div>
+                  <div class="grid-line g3"></div>
+                  <div class="chart-area-fill" id="chartAreaFill"></div>
+                  <div class="chart-line-stroke" id="chartLineStroke"></div>
+                </div>
+              </div>
+              <div class="energy-chart-hours">
+                <span>08:00</span>
+                <span>10:00</span>
+                <span>12:00</span>
+                <span>14:00</span>
+                <span>16:00</span>
+                <span>18:00</span>
+                <span>20:00</span>
+                <span>22:00</span>
+              </div>
+            </article>
+
+            <!-- Energy Breakdown Donut / Proportions -->
+            <article class="panel breakdown-panel" aria-labelledby="breakdownHeading">
+              <div class="panel-head">
+                <div>
+                  <h3 id="breakdownHeading">Rincian Sumber Konsumsi</h3>
+                  <p>Beban daya menurut kategori perangkat.</p>
+                </div>
+              </div>
+
+              <div class="donut-visual-container">
+                <div class="donut-ring" id="energyDonutRing" aria-hidden="true">
+                  <div class="donut-center-label">
+                    <strong id="donutTotalKwh">12.6</strong>
+                    <small>kWh Hari Ini</small>
+                  </div>
+                </div>
+              </div>
+
+              <div class="breakdown-list">
+                <div class="breakdown-item">
+                  <span class="legend-color-dot dot-lighting" aria-hidden="true"></span>
+                  <div class="breakdown-info">
+                    <strong>Pencahayaan (Lampu)</strong>
+                    <small id="breakdownLightingKwh">2.9 kWh terpakai</small>
+                  </div>
+                  <b id="breakdownLightingPct">23%</b>
+                </div>
+
+                <div class="breakdown-item">
+                  <span class="legend-color-dot dot-hvac" aria-hidden="true"></span>
+                  <div class="breakdown-info">
+                    <strong>Suhu & AC (HVAC)</strong>
+                    <small id="breakdownHVACKwh">6.4 kWh terpakai</small>
+                  </div>
+                  <b id="breakdownHVACPct">51%</b>
+                </div>
+
+                <div class="breakdown-item">
+                  <span class="legend-color-dot dot-other" aria-hidden="true"></span>
+                  <div class="breakdown-info">
+                    <strong>Beban Lainnya (Kulkas, WiFi, dll.)</strong>
+                    <small id="breakdownOtherKwh">3.3 kWh terpakai</small>
+                  </div>
+                  <b id="breakdownOtherPct">26%</b>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- SAVING SOURCES & OPTIMIZATION ACTION -->
+          <div class="energy-bottom-grid">
+            <article class="panel saving-sources-panel" aria-labelledby="savingSourcesHeading">
+              <div class="panel-head">
+                <div>
+                  <h3 id="savingSourcesHeading">Sumber Penghematan Energi Cerdas</h3>
+                  <p>Pengurangan konsumsi yang diperoleh dari sinkronisasi sistem.</p>
+                </div>
+              </div>
+
+              <div class="saving-source-item">
+                <div class="source-icon-wrap" aria-hidden="true">💡</div>
+                <div class="source-info">
+                  <strong>Pemadaman Lampu Ruangan Kosong</strong>
+                  <small id="savingLightingDetail">3 ruangan kosong tidak membuang listrik penerangan.</small>
+                </div>
+                <strong class="saving-num-tag" id="savingLightingVal">−1.4 kWh</strong>
+              </div>
+
+              <div class="saving-source-item">
+                <div class="source-icon-wrap" aria-hidden="true">❄</div>
+                <div class="source-info">
+                  <strong>Standby AC Otomatis</strong>
+                  <small id="savingHVACDetail">Zona kosong otomatis mengurangi konsumsi kompresor.</small>
+                </div>
+                <strong class="saving-num-tag" id="savingHVACVal">−2.1 kWh</strong>
+              </div>
+
+              <div class="saving-source-item">
+                <div class="source-icon-wrap" aria-hidden="true">🧳</div>
+                <div class="source-info">
+                  <strong>Penghematan Mode Pergi (Away Mode)</strong>
+                  <small id="savingAwayDetail">Saat seluruh keluarga bepergian, pemakaian ditekan hingga batas minimal.</small>
+                </div>
+                <strong class="saving-num-tag" id="savingAwayVal">−0.0 kWh</strong>
+              </div>
+            </article>
+
+            <!-- Optimization Action Card -->
+            <article class="panel energy-opt-panel" aria-labelledby="energyOptHeading">
+              <div class="panel-head">
+                <div>
+                  <h3 id="energyOptHeading">Optimalkan Penggunaan Listrik</h3>
+                  <p>Sesuaikan pencahayaan dan AC untuk efisiensi maksimal.</p>
+                </div>
+              </div>
+
+              <div class="opt-status-box">
+                <span class="opt-status-icon" aria-hidden="true">⚡</span>
+                <div>
+                  <strong>Mode Efisiensi Otomatis Aktif</strong>
+                  <p>Sistem memantau kondisi rumah dan memastikan tidak ada pemborosan daya listrik.</p>
+                </div>
+              </div>
+
+              <button class="btn-action-primary btn-block btn-lg" id="btnRunOptimization" type="button">
+                <span>⚡ Jalankan Optimasi Energi Sekarang</span>
+              </button>
+
+              <p class="opt-note-text" id="energyOptimizationNote">
+                Semua perangkat tersinkronisasi: 4/6 lampu ON, 3 zona AC aktif.
+              </p>
+              <div class="energy-skylight-note" id="energySkylightNote">
+                Skylight: 2/2 tertutup • mode otomatis 2/2 • tidak ada beban motor aktif.
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- =====================================================
+             PAGE 7: SECURITY / KEAMANAN
+             ===================================================== -->
+        <section id="page-security" class="page-view hidden" aria-labelledby="securityHeading">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">HOUSE 01 • SISTEM KEAMANAN & KESELAMATAN</p>
+              <h1 id="securityHeading">Keamanan Rumah</h1>
+              <p class="heading-sub">Pantau kondisi pintu, jendela, sensor gerak, dan alarm dengan indikator yang menenangkan dan mudah dipahami.</p>
+            </div>
+            <div class="status-pill status-safe" id="securityMainPill">
+              <span class="pill-dot" aria-hidden="true"></span>
+              <strong id="securityMainPillText">✓ All Secure • Semua Aman</strong>
+            </div>
+          </div>
+
+          <!-- SECURITY KPIS -->
+          <div class="security-kpis">
+            <article class="security-kpi-card">
+              <div class="kpi-icon-wrap" aria-hidden="true">
+                <span class="kpi-icon">🔐</span>
+              </div>
+              <div>
+                <small>STATUS KESELURUHAN</small>
+                <strong id="secOverallState">✓ All Secure</strong>
+                <span id="secOverallSub">Rumah 01 terlindungi penuh</span>
+              </div>
+            </article>
+
+            <article class="security-kpi-card">
+              <div class="kpi-icon-wrap" aria-hidden="true">
+                <span class="kpi-icon">🚪</span>
+              </div>
+              <div>
+                <small>PINTU / JENDELA TERBUKA</small>
+                <strong id="secOpenSensorsCount">0 Sensor Terbuka</strong>
+                <span>Semua akses tertutup rapat</span>
+              </div>
+            </article>
+
+            <article class="security-kpi-card">
+              <div class="kpi-icon-wrap" aria-hidden="true">
+                <span class="kpi-icon">👁️</span>
+              </div>
+              <div>
+                <small>SENSOR GERAK (MOTION)</small>
+                <strong id="secMotionActiveCount">0 Titik Gerak</strong>
+                <span>Kondisi normal terpantau</span>
+              </div>
+            </article>
+
+            <article class="security-kpi-card">
+              <div class="kpi-icon-wrap" aria-hidden="true">
+                <span class="kpi-icon">🚨</span>
+              </div>
+              <div>
+                <small>STATUS ALARM KEAMANAN</small>
+                <strong id="secAlarmState">AKTIF (ARMED)</strong>
+                <span id="secAlarmSub">Siaga perlindungan rumah</span>
+              </div>
+            </article>
+          </div>
+
+          <!-- SECURITY MODE SELECTOR & ALARM BOX -->
+          <div class="security-top-grid">
+            <article class="panel sec-mode-panel" aria-labelledby="secModesHeading">
+              <div class="panel-head">
+                <div>
+                  <h3 id="secModesHeading">Pilih Mode Keamanan Rumah</h3>
+                  <p>Perubahan mode akan menyelaraskan lampu, AC, dan sensor rumah secara otomatis.</p>
+                </div>
+                <span class="panel-tag">MODE UTAMA</span>
+              </div>
+
+              <div class="sec-modes-grid" role="radiogroup" aria-label="Pilihan Mode Keamanan">
+                <!-- HOME Mode -->
+                <button class="sec-mode-btn active" data-sec-mode="home" type="button" role="radio" aria-checked="true">
+                  <span class="sec-mode-icon" aria-hidden="true">🏠</span>
+                  <div class="sec-mode-info">
+                    <strong>Mode Di Rumah (HOME)</strong>
+                    <small>Penghuni ada di rumah. Lampu & AC dapat digunakan normal.</small>
+                  </div>
+                  <span class="sec-mode-badge">AKTIF</span>
+                </button>
+
+                <!-- AWAY Mode -->
+                <button class="sec-mode-btn" data-sec-mode="away" type="button" role="radio" aria-checked="false">
+                  <span class="sec-mode-icon" aria-hidden="true">🧳</span>
+                  <div class="sec-mode-info">
+                    <strong>Mode Pergi (AWAY)</strong>
+                    <small>Rumah kosong. Semua lampu OFF, AC Standby, alarm penuh.</small>
+                  </div>
+                  <span class="sec-mode-badge">PILIH</span>
+                </button>
+
+                <!-- NIGHT Mode -->
+                <button class="sec-mode-btn" data-sec-mode="night" type="button" role="radio" aria-checked="false">
+                  <span class="sec-mode-icon" aria-hidden="true">🌙</span>
+                  <div class="sec-mode-info">
+                    <strong>Mode Malam (NIGHT)</strong>
+                    <small>Keluarga istirahat. Kamar tidur nyaman, perimeter siaga.</small>
+                  </div>
+                  <span class="sec-mode-badge">PILIH</span>
+                </button>
+              </div>
+
+              <!-- Integration effect banner -->
+              <div class="integration-effect-box" id="secModeEffectBox">
+                <span class="effect-icon" aria-hidden="true">🔗</span>
+                <div>
+                  <strong id="secModeEffectTitle">Efek Mode Di Rumah (HOME)</strong>
+                  <p id="secModeEffectDesc">Pencahayaan dan pendingin ruangan mengikuti kebutuhan normal masing-masing ruangan. Sensor gerak bekerja wajar.</p>
+                </div>
+              </div>
+
+              <!-- Alarm Card Controller -->
+              <div class="alarm-control-card">
+                <div class="alarm-left">
+                  <div class="alarm-badge-icon" id="alarmBadgeIcon" aria-hidden="true">🛡️</div>
+                  <div>
+                    <strong id="alarmCardTitle">Sistem Alarm Siaga (ARMED)</strong>
+                    <p id="alarmCardDesc">Sensor keamanan aktif memantau akses rumah secara menyeluruh.</p>
+                  </div>
+                </div>
+                <button class="btn-action-outline btn-lg" id="btnToggleAlarm" type="button">
+                  <span id="btnAlarmText">NONAKTIFKAN (DISARM)</span>
+                </button>
+              </div>
+            </article>
+
+            <!-- Security Health Card -->
+            <article class="panel sec-health-panel" aria-labelledby="secHealthHeading">
+              <div class="panel-head">
+                <div>
+                  <h3 id="secHealthHeading">Kesehatan Sistem Keamanan</h3>
+                  <p>Skor integritas perangkat rumah.</p>
+                </div>
+              </div>
+
+              <div class="sec-score-big">
+                <strong id="secHealthScoreVal">98</strong>
+                <span>/ 100</span>
+              </div>
+              <div class="score-progress-bar">
+                <span class="score-fill" id="secHealthBar" style="width: 98%;"></span>
+              </div>
+
+              <div class="sec-health-checklist">
+                <div class="health-item">
+                  <span>Sensor Pintu & Jendela</span>
+                  <strong class="health-ok">✓ Terpasang Baik (4/4)</strong>
+                </div>
+                <div class="health-item">
+                  <span>Sensor Gerakan Ruangan</span>
+                  <strong class="health-ok">✓ Siaga Normal (4/4)</strong>
+                </div>
+                <div class="health-item">
+                  <span>Modul Sirine & Alarm</span>
+                  <strong class="health-ok">✓ Terhubung Online</strong>
+                </div>
+                <div class="health-item">
+                  <span>Sinkronisasi Rumah 01</span>
+                  <strong class="health-ok">✓ Terhubung Cepat</strong>
+                </div>
+              </div>
+            </article>
+          </div>
+
+          <!-- SENSORS LIST AND MOTION SENSORS -->
+          <div class="security-main-grid">
+            <!-- Door & Window Sensors -->
+            <article class="panel sensor-list-panel" aria-labelledby="sensorListHeading">
+              <div class="panel-head">
+                <div>
+                  <h3 id="sensorListHeading">Sensor Pintu & Jendela</h3>
+                  <p>Uji buka/tutup sensor untuk menguji respon sistem keamanan rumah.</p>
+                </div>
+                <button class="btn-subtle" id="refreshSensorsBtn" type="button">↻ Perbarui</button>
+              </div>
+
+              <div class="sensor-list">
+                <!-- Main Door -->
+                <div class="sensor-row" data-sensor-id="mainDoor">
+                  <span class="sensor-icon" aria-hidden="true">🚪</span>
+                  <div class="sensor-info">
+                    <strong>Pintu Utama Depan (Main Door)</strong>
+                    <small>Akses masuk depan rumah</small>
+                  </div>
+                  <span class="sensor-status-badge closed" id="sensorStatus-mainDoor">TERTUTUP (RAPAT)</span>
+                  <label class="toggle-switch" aria-label="Buka atau Tutup Pintu Utama Depan">
+                    <input type="checkbox" class="sensor-toggle-input" data-sensor-key="mainDoor">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+
+                <!-- Back Door -->
+                <div class="sensor-row" data-sensor-id="backDoor">
+                  <span class="sensor-icon" aria-hidden="true">🚪</span>
+                  <div class="sensor-info">
+                    <strong>Pintu Belakang (Back Door)</strong>
+                    <small>Akses menuju taman belakang</small>
+                  </div>
+                  <span class="sensor-status-badge closed" id="sensorStatus-backDoor">TERTUTUP (RAPAT)</span>
+                  <label class="toggle-switch" aria-label="Buka atau Tutup Pintu Belakang">
+                    <input type="checkbox" class="sensor-toggle-input" data-sensor-key="backDoor">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+
+                <!-- Living Window -->
+                <div class="sensor-row" data-sensor-id="livingWindow">
+                  <span class="sensor-icon" aria-hidden="true">🪟</span>
+                  <div class="sensor-info">
+                    <strong>Jendela Ruang Tamu (Living Window)</strong>
+                    <small>Jendela kaca bagian depan</small>
+                  </div>
+                  <span class="sensor-status-badge closed" id="sensorStatus-livingWindow">TERTUTUP (RAPAT)</span>
+                  <label class="toggle-switch" aria-label="Buka atau Tutup Jendela Ruang Tamu">
+                    <input type="checkbox" class="sensor-toggle-input" data-sensor-key="livingWindow">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+
+                <!-- Garage Door -->
+                <div class="sensor-row" data-sensor-id="garageDoor">
+                  <span class="sensor-icon" aria-hidden="true">🚗</span>
+                  <div class="sensor-info">
+                    <strong>Pintu Garasi Kendaraan (Garage Door)</strong>
+                    <small>Gerbang masuk kendaraan</small>
+                  </div>
+                  <span class="sensor-status-badge closed" id="sensorStatus-garageDoor">TERTUTUP (RAPAT)</span>
+                  <label class="toggle-switch" aria-label="Buka atau Tutup Pintu Garasi">
+                    <input type="checkbox" class="sensor-toggle-input" data-sensor-key="garageDoor">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+              </div>
+            </article>
+
+            <!-- Motion Sensors -->
+            <article class="panel motion-panel" aria-labelledby="motionHeading">
+              <div class="panel-head">
+                <div>
+                  <h3 id="motionHeading">Sensor Deteksi Gerakan (Motion)</h3>
+                  <p>Mendeteksi aktivitas gerakan di dalam dan sekitar rumah.</p>
+                </div>
+              </div>
+
+              <div class="motion-list">
+                <div class="motion-item">
+                  <span class="motion-icon" aria-hidden="true">🛋️</span>
+                  <div class="motion-info">
+                    <strong>Ruang Tamu (Living Room)</strong>
+                    <small>Sensor infra-merah dalam ruangan</small>
+                  </div>
+                  <span class="motion-tag" id="motionStatus-living">NORMAL</span>
+                </div>
+
+                <div class="motion-item">
+                  <span class="motion-icon" aria-hidden="true">🚪</span>
+                  <div class="motion-info">
+                    <strong>Lorong Kamar (Hallway)</strong>
+                    <small>Sensor area tengah rumah</small>
+                  </div>
+                  <span class="motion-tag" id="motionStatus-hallway">NORMAL</span>
+                </div>
+
+                <div class="motion-item">
+                  <span class="motion-icon" aria-hidden="true">🚗</span>
+                  <div class="motion-info">
+                    <strong>Garasi (Garage Area)</strong>
+                    <small>Sensor area kendaraan</small>
+                  </div>
+                  <span class="motion-tag" id="motionStatus-garage">NORMAL</span>
+                </div>
+
+                <div class="motion-item">
+                  <span class="motion-icon" aria-hidden="true">🌳</span>
+                  <div class="motion-info">
+                    <strong>Halaman Belakang (Backyard)</strong>
+                    <small>Sensor perimeter luar</small>
+                  </div>
+                  <span class="motion-tag" id="motionStatus-backyard">NORMAL</span>
+                </div>
+              </div>
+
+              <button class="btn-action-secondary btn-block btn-lg" id="btnSimulateMotion" type="button">
+                <span>👁️ Uji Simulasi Gerakan Acak</span>
+              </button>
+            </article>
+          </div>
+
+          <!-- SECURITY EVENT HISTORY -->
+          <article class="panel sec-history-panel" aria-labelledby="secHistoryHeading">
+            <div class="panel-head">
+              <div>
+                <h3 id="secHistoryHeading">Riwayat Peristiwa Keamanan</h3>
+                <p>Log keamanan terintegrasi dengan pusat Notifikasi.</p>
+              </div>
+              <button class="btn-subtle" id="btnClearSecurityHistory" type="button">Bersihkan Riwayat</button>
+            </div>
+            <div class="security-events-list" id="securityEventsList">
+              <!-- Dynamically populated events -->
+            </div>
+          </article>
+        </section>
+
+        <!-- =====================================================
+             PAGE 8: NOTIFICATIONS / NOTIFIKASI
+             ===================================================== -->
+        <section id="page-notifications" class="page-view hidden" aria-labelledby="notifHeading">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">HOUSE 01 • PUSAT PEMBERITAHUAN</p>
+              <h1 id="notifHeading">Notifikasi Rumah</h1>
+              <p class="heading-sub">Seluruh interaksi dari lampu, suhu & AC, listrik, dan keamanan dicatat secara otomatis di sini.</p>
+            </div>
+            <div class="header-action-group">
+              <button class="btn-action-primary" id="btnMarkAllRead" type="button">
+                <span>✓ Tandai Semua Dibaca</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- NOTIFICATION KPI CARDS -->
+          <div class="notification-summary">
+            <div class="notif-stat-card">
+              <small>BELUM DIBACA</small>
+              <strong id="notifUnreadCount">0</strong>
+              <span>Perlu perhatian Anda</span>
+            </div>
+            <div class="notif-stat-card">
+              <small>KEAMANAN</small>
+              <strong id="notifSecurityCount">0</strong>
+              <span>Pintu, gerak & alarm</span>
+            </div>
+            <div class="notif-stat-card">
+              <small>LISTRIK & DAYA</small>
+              <strong id="notifEnergyCount">0</strong>
+              <span>Laporan konsumsi</span>
+            </div>
+            <div class="notif-stat-card">
+              <small>SUHU & LAMPU</small>
+              <strong id="notifSmartCount">0</strong>
+              <span>Perubahan kenyamanan</span>
+            </div>
+          </div>
+
+          <!-- NOTIFICATIONS LIST WITH TODAY & EARLIER GROUPING -->
+          <div class="panel notifications-container-panel" aria-labelledby="notifListHeading">
+            <div class="panel-head">
+              <div>
+                <h3 id="notifListHeading">Daftar Pemberitahuan</h3>
+                <p>Dikelompokkan rapi berdasarkan waktu kejadian.</p>
+              </div>
+              <button class="btn-subtle" id="btnClearAllNotifs" type="button">Hapus Semua Notifikasi</button>
+            </div>
+
+            <!-- Group: Hari Ini (Today) -->
+            <div class="notif-group-section">
+              <div class="notif-group-title">
+                <span>HARI INI (TODAY)</span>
+              </div>
+              <div class="notif-items-list" id="notifListToday">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+
+            <!-- Group: Sebelumnya (Earlier) -->
+            <div class="notif-group-section">
+              <div class="notif-group-title">
+                <span>SEBELUMNYA (EARLIER)</span>
+              </div>
+              <div class="notif-items-list" id="notifListEarlier">
+                <!-- Populated dynamically -->
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- =====================================================
+             PAGE 9: SETTINGS / PENGATURAN (ACCESSIBILITY FOCUS)
+             ===================================================== -->
+        <section id="page-settings" class="page-view hidden" aria-labelledby="settingsHeading">
+          <div class="page-heading">
+            <div>
+              <p class="eyebrow">HOUSE 01 • KONFIGURASI SISTEM & AKSESIBILITAS</p>
+              <h1 id="settingsHeading">Pengaturan & Aksesibilitas</h1>
+              <p class="heading-sub">Pengaturan kenyamanan penglihatan dan interaksi, dirancang khusus untuk kemudahan orang tua dan seluruh keluarga.</p>
+            </div>
+          </div>
+
+          <!-- ACCESSIBILITY SETTINGS PANEL -->
+          <div class="panel settings-panel" aria-labelledby="a11yHeading">
+            <div class="panel-head">
+              <div>
+                <h3 id="a11yHeading">Aksesibilitas & Kenyamanan Tampilan</h3>
+                <p>Opsi ini langsung mengubah tampilan antarmuka saat diaktifkan.</p>
+              </div>
+              <span class="panel-tag">AKSESIBILITAS</span>
+            </div>
+
+            <div class="settings-list">
+              <!-- Large Text -->
+              <div class="settings-item">
+                <div class="settings-info">
+                  <span class="settings-icon" aria-hidden="true">🔍</span>
+                  <div>
+                    <strong>Teks Berukuran Besar (Large Text)</strong>
+                    <p>Membesarkan ukuran huruf seluruh aplikasi agar sangat mudah dan nyaman dibaca tanpa kacamata.</p>
+                  </div>
+                </div>
+                <label class="toggle-switch" aria-label="Aktifkan Teks Berukuran Besar">
+                  <input type="checkbox" id="settingLargeText">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+
+              <!-- High Readability / High Contrast -->
+              <div class="settings-item">
+                <div class="settings-info">
+                  <span class="settings-icon" aria-hidden="true">👁️</span>
+                  <div>
+                    <strong>Kontras & Keterbacaan Tinggi (High Readability)</strong>
+                    <p>Mempertegas garis batas kartu, memperjelas warna teks, dan meningkatkan ketajaman visual.</p>
+                  </div>
+                </div>
+                <label class="toggle-switch" aria-label="Aktifkan Keterbacaan Tinggi">
+                  <input type="checkbox" id="settingHighReadability">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+
+              <!-- Reduce Animation -->
+              <div class="settings-item">
+                <div class="settings-info">
+                  <span class="settings-icon" aria-hidden="true">⚡</span>
+                  <div>
+                    <strong>Kurangi Animasi (Reduce Animation)</strong>
+                    <p>Menghilangkan efek transisi bergerak untuk mencegah rasa pusing dan mempercepat pergantian halaman.</p>
+                  </div>
+                </div>
+                <label class="toggle-switch" aria-label="Kurangi Animasi Gerak">
+                  <input type="checkbox" id="settingReduceAnimation">
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- HOUSE CONFIGURATION PANEL -->
+          <div class="panel settings-panel" aria-labelledby="houseConfigHeading">
+            <div class="panel-head">
+              <div>
+                <h3 id="houseConfigHeading">Informasi Rumah & Pengguna</h3>
+                <p>Data profil prototipe Rumah 01.</p>
+              </div>
+            </div>
+
+            <div class="settings-list">
+              <div class="settings-item field-item">
+                <label for="cfgHouseName">
+                  <strong>Nama Rumah (House Name)</strong>
+                  <p>Identitas unit perumahan pada prototipe ini</p>
+                </label>
+                <input type="text" id="cfgHouseName" value="House 01" class="form-input">
+              </div>
+
+              <div class="settings-item field-item">
+                <label for="cfgHomeOwner">
+                  <strong>Nama Pemilik Rumah (Resident)</strong>
+                  <p>Nama yang ditampilkan pada salam pembuka</p>
+                </label>
+                <input type="text" id="cfgHomeOwner" value="Admin" class="form-input">
+              </div>
+
+              <div class="settings-item field-item">
+                <label for="cfgHouseType">
+                  <strong>Tipe Properti (Property Type)</strong>
+                  <p>Spesifikasi arsitektur prototipe</p>
+                </label>
+                <select id="cfgHouseType" class="form-select">
+                  <option selected>Rumah Satu Lantai (1-Storey House • 6 Ruangan)</option>
+                  <option>Rumah Hunian Standar</option>
+                </select>
+              </div>
+
+              <div class="settings-item">
+                <div class="settings-info">
+                  <span class="settings-icon" aria-hidden="true">✨</span>
+                  <div>
+                    <strong>Otomatisasi Rumah Keseluruhan (Master Automation)</strong>
+                    <p>Mengaktifkan kecerdasan otomatis pada lampu, suhu & AC, serta penghematan listrik.</p>
+                  </div>
+                </div>
+                <label class="toggle-switch" aria-label="Aktifkan Otomatisasi Keseluruhan">
+                  <input type="checkbox" id="cfgMasterAutomation" checked>
+                  <span class="toggle-slider"></span>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <!-- DATA MANAGEMENT PANEL -->
+          <div class="panel settings-panel" aria-labelledby="dataMgmtHeading">
+            <div class="panel-head">
+              <div>
+                <h3 id="dataMgmtHeading">Manajemen Data Demo</h3>
+                <p>Atur ulang data simulasi ke kondisi awal prototipe.</p>
+              </div>
+            </div>
+            <div class="settings-data-actions">
+              <button class="btn-action-secondary btn-lg" id="btnResetDemoData" type="button">
+                <span>🔄 Kembalikan ke Pengaturan Awal Prototipe</span>
+              </button>
+              <p class="data-action-note">Tindakan ini akan mengembalikan data simulasi ruangan, suhu, lampu, dan keamanan ke status semula.</p>
+            </div>
+          </div>
+        </section>
+
+      </div>
+    </main>
+
+    <!-- =========================================================
+         MOBILE BOTTOM NAVIGATION (5 ITEMS)
+         Beranda • Ruangan • Lampu • Suhu • Lainnya
+         ========================================================= -->
+    <nav class="mobile-nav" aria-label="Navigasi Utama Ponsel">
+      <button class="mobile-nav-item active" data-page="dashboard" type="button">
+        <span class="m-icon" aria-hidden="true">⌂</span>
+        <span class="m-label">Beranda</span>
+      </button>
+      <button class="mobile-nav-item" data-page="rooms" type="button">
+        <span class="m-icon" aria-hidden="true">▦</span>
+        <span class="m-label">Ruangan</span>
+      </button>
+      <button class="mobile-nav-item" data-page="lighting" type="button">
+        <span class="m-icon" aria-hidden="true">💡</span>
+        <span class="m-label">Lampu</span>
+      </button>
+      <button class="mobile-nav-item" data-page="hvac" type="button">
+        <span class="m-icon" aria-hidden="true">❄</span>
+        <span class="m-label">Suhu</span>
+      </button>
+      <button class="mobile-nav-item" id="mobileMoreBtn" type="button" aria-expanded="false" aria-controls="mobileMoreMenu">
+        <span class="m-icon" aria-hidden="true">☰</span>
+        <span class="m-label">Lainnya</span>
+      </button>
+    </nav>
+
+    <!-- MOBILE "LAINNYA" (MORE) BOTTOM SHEET / MENU -->
+    <div id="mobileMoreMenu" class="mobile-more-menu hidden" role="dialog" aria-modal="true" aria-label="Menu Tambahan Rumah">
+      <div class="mobile-more-head">
+        <div>
+          <strong>Menu Lainnya • House 01</strong>
+          <small>Pilih modul manajemen rumah</small>
+        </div>
+        <button type="button" id="closeMobileMore" class="btn-close-sheet" aria-label="Tutup Menu">✕</button>
+      </div>
+
+      <div class="mobile-more-grid">
+        <button class="m-more-item" data-page="energy" type="button">
+          <span class="m-more-icon" aria-hidden="true">⚡</span>
+          <div class="m-more-text">
+            <strong>Listrik</strong>
+            <small>Pantau daya & penghematan</small>
+          </div>
+          <span class="m-more-arrow" aria-hidden="true">→</span>
+        </button>
+
+        <button class="m-more-item" data-page="security" type="button">
+          <span class="m-more-icon" aria-hidden="true">🛡️</span>
+          <div class="m-more-text">
+            <strong>Keamanan</strong>
+            <small>Pintu, jendela & alarm</small>
+          </div>
+          <span class="m-more-arrow" aria-hidden="true">→</span>
+        </button>
+
+        <button class="m-more-item" data-page="notifications" type="button">
+          <span class="m-more-icon" aria-hidden="true">🔔</span>
+          <div class="m-more-text">
+            <strong>Notifikasi</strong>
+            <small>Pemberitahuan sistem rumah</small>
+          </div>
+          <span class="nav-badge" id="mobileMoreNotifBadge">0</span>
+        </button>
+
+        <button class="m-more-item" data-page="settings" type="button">
+          <span class="m-more-icon" aria-hidden="true">⚙</span>
+          <div class="m-more-text">
+            <strong>Pengaturan</strong>
+            <small>Ukuran teks & opsi tampilan</small>
+          </div>
+          <span class="m-more-arrow" aria-hidden="true">→</span>
+        </button>
+
+        <button class="m-more-item logout-item" id="mobileLogoutBtn" type="button">
+          <span class="m-more-icon" aria-hidden="true">↪</span>
+          <div class="m-more-text">
+            <strong>Keluar</strong>
+            <small>Kembali ke halaman masuk</small>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="toast-container" aria-live="polite" aria-atomic="true"></div>
+
+  <!-- APPLICATION SCRIPT -->
+  <script src="app.js"></script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => navigator.serviceWorker.register('sw.js').catch(() => {}));
+    }
+  </script>
+</body>
+</html>
